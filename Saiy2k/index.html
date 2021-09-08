@@ -1,0 +1,211 @@
+<!--
+Copyright 2011 Saiyasodharan (http://saiy2k.blogspot.com/)
+
+This file is part of the open source game, Tic Tac Toe Extended (https://github.com/saiy2k/Tic-Tac-Toe-Extended-HTML5-Game)
+
+Tic Tac Toe Extended is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Tic Tac Toe Extended is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE html>
+<html manifest="./offline.appcache" itemscope itemtype="http://schema.org/Product">
+<head profile="http://www.w3.org/2005/10/profile">
+	<title> Tic Tac Toe Extended </title>
+    <meta name="keywords" content="free, online, tic, tac, toe, extended, html5, offline, game, board, player, user, AI, share, facebook, twitter, x, o, google, plus, rank, score, god, amoeba"/> 
+    <meta name="description" content="Free online version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter. This game also supports HTML5 offline mode, thus requiring no internet connection to play after first run." />
+	<meta name="author" content="Saiyasodharan" />
+	<meta charset="UTF-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="meta-apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="apple-touch-icon" href="http://www.gethugames.in/tictactoe/images/icon64.png"/>
+    <link rel="icon" type="image/png" href="http://www.gethugames.in/tictactoe/images/icon64.png" />
+	<link type="text/css" href="style.css" rel="Stylesheet" />
+
+    <!--tags for opengraph-->
+	<meta property="og:title" content="Tic Tac Toe Extended" />
+	<meta property="og:type" content="game" />
+	<meta property="og:url" content="http://www.gethugames.in/tictactoe/" />
+	<meta property="og:image" content="http://www.gethugames.in/tictactoe/images/icon128.png" />
+	<meta property="og:site_name" content="Tic Tac Toe Extended" />
+	<meta property="fb:admins" content="100000655597076" />
+	<meta property="og:description" content="Free online version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter. This game also supports HTML5 offline mode, thus requiring no internet connection to play after first run."/>
+		  
+    <!--tags for Google+-->
+	<meta itemprop="name" content="Tic Tac Toe Extended">
+	<meta itemprop="url" content="http://www.gethugames.in/tictactoe/">
+	<meta itemprop="image" content="http://www.gethugames.in/tictactoe/images/icon128.png">
+	<meta itemprop="description" content="Free online version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter. This game also supports HTML5 offline mode, thus requiring no internet connection to play after first run.">
+    
+    <!--external and internal scripts-->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof jQuery == 'undefined')
+        {
+            document.write(unescape("%3Cscript src='scripts/jquery.js' type='text/javascript'%3E%3C/script%3E"));
+        }
+    </script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-24593968-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+		function init()
+		{
+			if($.browser.msie) {
+				$("#browserDiv").show();
+				$("#loadingDiv").hide();
+			} else {
+				TicTacToe.GameManager.init();
+				$("#preLoader").hide();
+			}
+		}
+    </script>
+
+	<script type="text/javascript" src="scripts/min.js"></script>
+
+  <!--IF ON REPL.IT BEGIN-->
+	<script type="text/javascript" src="scripts/TicTacToe.js"></script>
+	<script type="text/javascript" src="scripts/FBWrapper.js"></script>
+	<script type="text/javascript" src="scripts/TwitterWrapper.js"></script>
+	<script type="text/javascript" src="scripts/AudioManager.js"></script>
+	<script type="text/javascript" src="scripts/InputManager.js"></script>
+	<script type="text/javascript" src="scripts/GameState.js"></script>
+	<script type="text/javascript" src="scripts/GameLogic.js"></script>
+	<script type="text/javascript" src="scripts/BoardTile.js"></script>
+	<script type="text/javascript" src="scripts/GameBoard.js"></script>
+	<script type="text/javascript" src="scripts/GameManager.js"></script>
+	<script type="text/javascript" src="scripts/GameManager.js"></script>
+  <!--IF ON REPL.IT END-->
+
+</head>
+
+<body onload="init()">
+	<div id="preLoader" style="position:absolute; z-index:99999; width:100%; height: 100%; background-color:#6c4f2e; color:#e9d8c5; top:0px; left:0px;">
+		<div id="loadingDiv" style="position:absolute; width:160px; height:50px; top:50%; left:50%; margin:-25px 0px 0px -80px; font: 32px 'arial'; border:0px solid; font-variant:small-caps;">
+			Loading...
+		</div>
+		<div ID="browserDiv" style="display:none; position:absolute; width:800px; height:280px; top:50%; left:50%; margin:-140px 0px 0px -400px; font: 32px 'arial'; border:0px solid; font-variant:small-caps; text-align:left;">
+			This application will run on all Modern browsers except Internet Explorer. If you are seeing this message, then you are using some version of IE. Please download and instal any of the following modern browsers to run this application:<br>
+			1. <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a> <br>
+			2. <a href="http://www.mozilla.com" target="_blank">Mozilla Firefox</a> <br>
+			3. <a href="http://www.opera.com/" target="_blank">Opera</a> <br>
+		</div>
+	</div>
+
+	<div id="container">
+        <div id="titleDiv"><h1 style='display:inline'>Tic Tac Toe Extended</h1><div id="inGameMute">&#9553;</div></div>
+		<div id="canvasContainer">
+			<canvas id="boardCanvas" width="480" height="480" ></canvas>
+            <div id="menuScreen" class="otherScreen">
+                <p class="menuButton" id="newAIGameButton"> New Game vs AI </p>
+                <p class="menuButton" id="newHumanGameButton"> New Game vs Human </p>
+                <p class="menuButton" id="muteMusicButton"> Mute Music </p>
+                <p class="menuButton" id="helpButton"> Help </p>
+                <p class="menuButton" id="creditsButton"> Credits </p>
+            </div> 
+			<div id="shareScoreWidget" class="otherScreen">
+				<p id="gOverStatus"> test status </p>
+				<p id="gOverDescription"> test description </p>
+                <div id="shareFacebookWidget" style="display:inline;"> <img id="shareFacebookWidget" src="images/fbIcon.png" /> </div>
+				<div id="shareTwitterWidget" style="display:inline;"> <img id="shareTwitterWidget" src="images/tweetIcon.png" /> </div><br/>
+				<div id="badgeWidget"><img src="images/Amoeba.png" id="badgeImageHolder" /></div> 
+				<p id="gOverRemark"> test description </p>
+                <p id="closeGameOver"><big><u><b>Click here to go to menu</b></u></big></p>
+			</div>
+            <div id="infoScreen" class="otherScreen"></div>
+			<div id="creditsScreen" class="otherScreen">
+                <p id="creditsText"><h2>CREDITS</h2><small>(click to go back)</small><br/><br/>Please give ur valuable <a href="http://www.gethugames.in/feedback/index.php?from=tictactoe@gethugames.in" target="_blank"><b>feedback</b> @ here</a>. <br />  <br/> <br />  This software is released under GNU GPL v3. <a href='License.txt' target='_blank' >Click here</a> to know your rights. All works are licensed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons Attribution 3.0 Unported License.</a> <br /> <br/>Developed by <a href="http://saiy2k.blogspot.com" target="_blank">Saiyasodharan</a>. <br /><a href="http://binarysaiy2k.blogspot.com/2011/12/tic-tac-toe-extended.html" target="_blank">http://binarysaiy2k.blogspot.com/2011/12/tic-tac-toe-extended.html</a> <br/> <br />  You can grab the source code from <a href="https://github.com/saiy2k/Tic-Tac-Toe-Extended-HTML5-Game" target="_blank"> https://github.com/saiy2k/Tic-Tac-Toe-Extended-HTML5-Game</a> <br /> <br /> <br /> Music : <a href="http://incompetech.com" target='_blank'>Kevin MacLeod</a> <br /> Sound effects from <a href='http://opengameart.org/' target='_blank'>Open Game Art</a> </p> 
+			</div>
+            <div id='tipsScreen' class='otherScreen' style='background-color:rgba(0, 0, 0, 0); font-size:1em; font-weight:bold; color:#222'>
+                <br/><br/><br/><br/><br/>
+                <p> Place 'x' in four adjacent tiles to score points. </p>
+            </div>
+		</div>
+        <div class="freeBoardDiv">
+            <a href="http://www.gethugames.in" target="_blank">Visit GethuGames.in for more Web Apps</a> <br/>
+        </div>
+        <div class="freeBoardDiv">
+            <a href="http://www.gethugames.in/spirocanvas" target='_blank'> <img src="http://www.gethugames.in/spirocanvas/images/spiroCanvasIcon128.png" alt="Spirocanvas" class="otherAppIcon"/> </a>
+        </div>
+		<div id="scoreBoardDiv">
+			<div id="player1Sign"	class="scoreBoardLabel">X</div>
+			<div id="player1Score"	class="scoreBoardLabel" style="background-color: #97672e">0</div>
+			<div id="timeTaken"	class="scoreBoardLabel" style="width:50%">00:00</div>
+			<div id="player2Score"	class="scoreBoardLabel" style="background-color: #97672e">0</div>
+			<div id="player2Sign"	class="scoreBoardLabel">O</div>
+		</div>
+		<div id="playOptionsDiv">
+			<div id="newGameDiv"	class="playOptionsHalf">
+                <p id="menuButton" style="background-color:rgba(125, 76, 24, 0.5); margin:4px; padding:4px; border-radius: 10px;"> MENU </p>
+                <input type="text" value="set player 1" class="nameInputBox" id="p1NameDiv1"/>
+                <input type="text" value="set player 2" class="nameInputBox" id="p2NameDiv1"/>
+			</div>
+			<div id="creditsDiv"	class="playOptionsHalf" style="float:right; overflow:visible">
+                <div id="tweet" class="socialButton">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical" data-url="http://www.gethugames.in/tictactoe/">Tweet</a>
+                </div>
+
+                <div id="gplus" class="socialButton">
+                    <div class="g-plusone" data-size="tall" data-href="http://www.gethugames.in/tictactoe/"></div>
+                </div>
+            
+                <div id="fb" class="socialButton" style="overflow:visible" style="width:500; height:300"> 
+                    <div class="fb-like" data-href="http://www.gethugames.in/tictactoe/" data-send="false" data-layout="box_count" data-width="500" data-show-faces="false" data-colorscheme="dark" data-font="segoe ui"></div>
+                </div>
+			</div>
+		</div>
+	</div>
+        
+    <!--Importing Facebook's Javascript SDK - Begin-->
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '267249556660656', // App ID
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          oauth      : true, // enable OAuth 2.0
+          xfbml      : true  // parse XFBML
+        });
+
+        FB.getLoginStatus(TicTacToe.FBWrapper.checkLoginStatus);
+    };
+
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+      // Load the SDK Asynchronously
+      (function(d){
+          var e = document.createElement('script'); e.async = true;
+            e.src = document.location.protocol 
+                + '//connect.facebook.net/en_US/all.js';
+                  document.getElementById('fb-root').appendChild(e);
+       }());
+
+        //plus one
+        (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+
+    </script>
+    <!--Importing Facebook's Javascript SDK - End-->
+
+</body>
+
+</html>
