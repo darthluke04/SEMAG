@@ -28,7 +28,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/nielsenlu2/SEMAG/">
-    <img src="images/SEMAG.png" alt="Logo" width="80" height="80">
+    <img src="img/SEMAG.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
