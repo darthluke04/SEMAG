@@ -1,0 +1,25 @@
+<script src="js/howler.js"></script>
+
+<script>
+	
+	var sound = new Howl({
+		src: ['sounds/sprite.mp3'],
+
+		sprite: {
+			shoot: [0, 370],
+			explosion: [400, 1195-370-50], 
+			invaderkilled: [1150, 350],
+			fastinvader1: [1550, 100],
+			fastinvader2: [1650, 100],
+			fastinvader3: [1750, 100]
+		}
+	});
+
+	// sound.play('shoot');
+	// sound.play('explosion');
+	// sound.play('invaderkilled');
+	// sound.play('fastinvader3');
+	// sound.play('fastinvader2');
+	sound.play('fastinvader3');
+
+</script>
