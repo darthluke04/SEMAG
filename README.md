@@ -36,8 +36,8 @@
   <p align="center">
     50+ G.A.M.E.S Just for you!!!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
+<!--     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the readme template! »</strong></a>
+    <br /> -->
     <br />
     <a href="https://github.com/nielsenlu2/SEMAG">View Demo</a>
     ·
