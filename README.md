@@ -127,7 +127,7 @@ SEMAG has a huge selection of games! You can pick from Tetris to Minecraft!
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/nielsenlu2/SEMAG/issues) for a list of proposed features (and known issues).
 
 
 
