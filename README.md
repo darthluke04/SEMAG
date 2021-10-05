@@ -28,7 +28,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/nielsenlu2/SEMAG/">
-    <img src="img/SEMAG.png" alt="Logo" width="80" height="80">
+    <img src="img/README/SEMAG.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">SEMAG</h3>
@@ -42,8 +42,6 @@
     <a href="https://github.com/nielsenlu2/SEMAG">View Demo</a>
     ·
     <a href="https://github.com/nielsenlu2/SEMAG/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/nielsenlu2/SEMAGissues">Request Feature</a>
   </p>
 </p>
 
@@ -62,7 +60,7 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#important">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -79,68 +77,50 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+<p align="center">
+<img src="img/README/Semag-Thumb.png" alt="Logo">
+</p>
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+There arent many websites on github that have more than one game on a website. So we decided to make one that has all of the G.A.M.E.S in one repo!
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+The G.A.M.E.S on SEMAG is not just only made by one person, It was made by many! 
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+A list of commonly used resources that I find helpful are listed in the acknowledgements. PS: This Readme File was a template of the [Best README Template](https://github.com/othneildrew/Best-README-Template) Initially made by the one and only [@Othneil Drew](https://github.com/othneildrew)
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
 * [Laravel](https://laravel.com)
+* [Replit](https://Replit.com)
 
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+1. Fork the project
+2. Deploy the project
+3. head to <b>Github-Username</b>.github.io/SEMAG
 
-### Prerequisites
+<!-- COMMENTS -->
+### Important
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-These are <b style='color:red'>red words</b>
-### Installation
+***Some games will not work if you do not have the packages installed.***
+### Downloading
 
-1. Click the ! text in orange <div class="text-white bg-red mb-2">.text-white on .bg-red Code ▼ </div>
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
+1. Click the <img src="img/README/Download-code.svg" alt="Logo" height="15"> to download.
+2. Then unzip the file and click the `SEMAG Master` file
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+You can use this website to play G.A.M.E.S!
+For example: If you are bored at school, you can easily hop on SEMAG and play some G.A.M.E.S!
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+SEMAG has a huge selection of games! You can pick from Tetris to Minecraft!
 
 
 
@@ -158,7 +138,7 @@ Contributions are what make the open source community such an amazing place to l
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeatures'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
@@ -174,9 +154,13 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Luke Nielsen:
+* Github: [@nielsenlu2](https://github.com/nielsenlu2)
+* Email: [@nielsenlu2](mailto:nielsenlu2@wsdstudent.net)
+* Email: [@nielsen101004](mailto:nielsen101004@gmail.com)
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Repo: [https://github.com/nielsenlu2/SEMAG](https://github.com/nielsenlu2/SEMAG) <br>
+Project Website: [https://nielsenlu2.github.io/SEMAG/](https://nielsenlu2.github.io/SEMAG/)
 
 
 
