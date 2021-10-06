@@ -1,4 +1,4 @@
-@font-face { font-family: Oswald; src: url('ExtraFonts/Oswald-VariableFont_wght.ttf'); } 
+l9@font-face { font-family: Oswald; src: url('ExtraFonts/Oswald-VariableFont_wght.ttf'); } 
 
 
 html {
@@ -10,7 +10,6 @@ html {
 .popular {
 	border: transparent;
 }
-
 
 
 
@@ -52,9 +51,6 @@ html {
 
 
 
-.NM {
-	width: 2%;
-}
 
 
 .G {
