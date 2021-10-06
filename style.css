@@ -35,6 +35,18 @@ html {
 
 
 
+#galleryDiv {
+	width: 50%;
+	height: 0%;
+	display: none;
+	border-radius: 10px;
+	text-align: center;
+	background-color: #33333367;
+	position: fixed;
+}
+#galleryImg {
+	border-radius: 10px;
+}
 
 
 
