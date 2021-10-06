@@ -1,0 +1,14 @@
+{
+    "browser": true,
+    "expr": true,
+    "globalstrict": true,
+    "sub": true,
+    "node": true,
+    "globals": {
+        "xss": true,
+        "jasmine": true,
+        "describe": true,
+        "expect": true,
+        "it": true
+    }
+}
