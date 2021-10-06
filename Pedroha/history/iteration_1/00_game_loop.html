@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas id="invaderCanvas" width="800" height="600"></canvas>
+    
+    <script>
+    
+        window.onload = function() {
+            
+            var width = 800;
+            var height = 600;
+            
+            var moveRight = true;
+            
+            var speed = 10;
+            
+            var ship = {
+              x: width/2
+            , y: 500
+            , color: 'rgb(255, 64, 64)'
+            , width: 30
+            , height: 20
+            , moveNext: function() {
+                
+                if (moveRight) {
+                    this.x += speed;
+                }
+                else {
+                    this.x -= speed;
+                }
+                
+                // Bounce ship between the walls
+                    
+                if (this.x > width-100) {
+                    moveRight = false; // reverse direction
+                }
+                else
+                if (this.x < 50) {
+                    moveRight = true; // reverse direction
+                }
+            }
+            };
+            
+            var updateModel = function() {
+                ship.moveNext();                
+            };
+            
+            var displayModel = function() {
+                var canvas = document.getElementById('invaderCanvas');
+                
+                var ctx = canvas.getContext('2d');
+                
+                ctx.fillStyle = "black";
+                ctx.fillRect(0, 0, width, height);
+                
+                // Draw ship (I'm not a designer!)
+                ctx.fillStyle = ship.color;
+                ctx.fillRect(ship.x, ship.y, ship.width, ship.height);
+            };
+
+            function gameLoop() {
+                //console.log("Hola!" + ship.x);
+                updateModel();
+                displayModel();
+                setTimeout(gameLoop, 100);
+            }
+            gameLoop();
+            
+        }
+    
+    </script>
+</body>
+</html>

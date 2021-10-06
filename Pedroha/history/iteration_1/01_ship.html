@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas id="invaderCanvas" width="800" height="600"></canvas>
+    
+    <script>
+    
+    window.onload = function() {
+        
+        var engine = {
+            updateModel: function() {
+                enemy.moveNext();                
+            },
+            displayModel: function() {
+                var canvas = document.getElementById('invaderCanvas');
+
+                var ctx = canvas.getContext('2d');
+
+                // Paint background
+                ctx.fillStyle = "black";
+                ctx.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+
+                // Draw ship
+                ctx.fillStyle = ship.color;
+                ctx.fillRect(ship.x, ship.y, ship.width, ship.height);
+
+                // Draw enemy ship
+                ctx.fillStyle = enemy.color;
+                ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+            }
+        };
+
+        setupInputCommands();
+        
+        var gameLoop = function() {
+            engine.updateModel();
+            engine.displayModel();
+            setTimeout(gameLoop, 100);
+        }
+        gameLoop();
+    }
+        
+    
+    var DISPLAY_WIDTH  = 800;
+    var DISPLAY_HEIGHT = 600;
+
+    function Ship() {
+        this.x = 400;
+        this.y = 500;
+        this.color = 'rgb(255, 64, 64)';
+        this.width = 30;
+        this.height = 20;
+    
+        var speed = 10;
+    
+        this.moveRight =  function() {
+            if (this.x + speed < DISPLAY_WIDTH-100) {
+                this.x += speed;
+            }
+        }
+        this.moveLeft = function() {
+            if (this.x - speed > 50) {
+                this.x -= speed;
+            }
+        }
+    
+        this.fire = function() {
+            alert("Fire");
+        }
+    }
+
+    var ship = new Ship();
+
+    var enemy = {
+      x: DISPLAY_WIDTH/2
+    , y: 100
+    , speed: 5
+    , color: 'rgb(255, 255, 64)'
+    , width: 30
+    , height: 20
+    , moveRight: true
+    , moveNext: function() {
+    
+        if (this.moveRight) {
+            this.x += this.speed;
+        }
+        else {
+            this.x -= this.speed;
+        }
+    
+        // Bounce ship between the walls (reverse direction)
+        
+        if (this.x > DISPLAY_WIDTH-100) {
+            this.moveRight = false;
+        }
+        else
+        if (this.x < 50) {
+            this.moveRight = true;
+        }
+    }
+    };
+    
+    // -------------------------------------
+    
+    function setupInputCommands() {
+		var CMD_FIRE = "fire";
+		var CMD_SHIP_LEFT = "ship-left";
+		var CMD_SHIP_RIGHT = "ship-right";
+
+		var handleCommand = function(command) {
+		    switch(command) {
+		        case CMD_FIRE           : ship.fire();      break;
+		        case CMD_SHIP_LEFT      : ship.moveLeft();  break;
+		        case CMD_SHIP_RIGHT     : ship.moveRight(); break;
+		        default:
+		            throw new Error("Command not recognized: " + command);
+		    }
+		}
+
+		var SPACE = 32;
+		var LEFT_ARROW = 37;
+		var RIGHT_ARROW = 39;
+
+		var onKeyDown = function(event){
+			switch (event.keyCode) {
+				case SPACE:         handleCommand(CMD_FIRE);        break;
+				case LEFT_ARROW:    handleCommand(CMD_SHIP_LEFT);   break;
+				case RIGHT_ARROW:   handleCommand(CMD_SHIP_RIGHT);  break;
+			}
+		}
+        document.addEventListener('keydown', onKeyDown, false);                
+    }
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- Mobile specific code -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <style>
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media all and (orientation:portrait) {
+            html, body, canvas {
+                width: 100%;
+            }
+        }
+
+        @media all and (orientation:landscape) {
+            html, body, canvas {
+                height: 100%;
+            }
+        }
+
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        #left, #right, #fire {
+            height: 34px;
+            width: 88px;
+            display: inline-block;
+        }
+
+        #fire {
+            width: calc(100% - 2 * 88px);
+        }
+
+        #left, #right, #fire {
+            color: white;
+            position: fixed;
+            background-color: rgba(255, 255, 255, 0.2);
+            text-align: center;
+            border: 1px solid black;
+            font-family: Verdana;
+            line-height: 10rem;
+        }
+
+        #left:active, #right:active, #fire:active {
+            background-color: rgba(255, 216, 216, 0.2);
+        }
+
+        #left, #right {
+            height: 10rem;
+            width: 88px;
+            bottom: 88px;
+        }
+
+        #left {
+            left: 0;
+        }
+
+        #right {
+            right: 0;
+        }
+
+        #fire {
+            bottom: 0;
+            right: 88px;
+            left: 88px;
+            height: 4rem;
+            line-height: 4rem;
+        }
+
+
+    </style>
+</head>
+<body>
+<!-- 
+<audio> NOT WORKING ON MOBILE, use howler.js / Web Audio API
+
+<audio id="shootSound"          src="sounds/shoot.wav"           controls preload="auto"></audio>
+<audio id="fastInvader1Sound"   src="sounds/fastinvader1.wav"    controls preload="auto"></audio>
+<audio id="fastInvader2Sound"   src="sounds/fastinvader2.wav"    controls ></audio>
+<audio id="fastInvader3Sound"   src="sounds/fastinvader3.wav"    controls ></audio>
+<audio id="invaderKilledSound"  src="sounds/invaderkilled.wav"   controls preload="auto"></audio>
+<audio id="explosionSound"      src="sounds/explosion.wav"       controls preload="auto"></audio>
+ -->
+    <canvas id="invaderCanvas" width="800" height="600"></canvas>
+
+    <div id="right" class="noselect"> >> </div>
+    <div id="left" class="noselect"> << </div>
+    <div id="fire" class="noselect">FIRE</div>
+
+    <script>
+    
+        var SOUND_ON = true;
+        var NUM_MISSILES = 3;
+
+        var DEBUG_BLOCK_PAINTER = false;
+
+        var TEXT_OVERLAY_COLOR = "#00ff00"; // "white";
+        
+        var space_invaders = {};
+
+    </script>
+
+    <script src="js/howler.js"></script>
+    <script src="js/space_invaders.util.js"></script>
+    <script src="js/space_invaders.sprites.js"></script>
+    <script src="js/space_invaders.scene.js"></script>
+    <script src="js/space_invaders.input.js"></script>
+    <script src="js/space_invaders.app.js"></script>
+
+    <script src="js/fastclick.js"></script>
+    <script>
+        var is_touch = !!('ontouchstart' in window);
+        if (is_touch) {
+            // Fast click
+            window.addEventListener('load', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+
+
+    <script>
+        space_invaders.app.startGame();
+    </script>
+</body>
+</html>
+

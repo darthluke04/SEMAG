@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Filler</title>
+</head>
+<body>
+<style>
+html, body {
+	overflow: hidden;
+	height:100%;
+}
+
+#background {
+	width:100%;
+	height:100%;
+}
+
+tr {
+	height:50px;	
+}
+	
+table {
+	padding-bottom:50px;
+	margin: auto;
+}
+
+td {
+	width:48px;
+	height:48px;
+	text-align:center;
+}
+
+#buttons {
+	margin:auto;
+	width:50%;
+	text-align: center;
+}
+
+.button {
+	width:45px;
+	height:45px;
+	cursor:pointer;
+}
+
+.heading {
+	text-align:center;
+}
+
+#playerOne {
+	position:absolute;
+	top:25%;
+	left:0;
+	width:25%;
+	height:100%;
+	text-align:center;
+}
+
+#playerTwo {
+	position:absolute;
+	top:25%;
+	right:0;
+	width:25%;
+	height:100%;
+	text-align:center;
+}
+</style>
+<div id="background">
+<h1 class="heading">Filler</h1>
+<h2 class="heading" id="turnNumber">Player 1's turn</h2>
+<table>
+	<tr>
+		<td class="first"></td>
+		<td class="first"></td>
+		<td class="first"></td>
+		<td class="first"></td>
+		<td class="first"></td>
+		<td class="first"></td>
+		<td class="first"></td>
+		<td class="first">2</td>
+	</tr>
+	<tr>
+		<td class="second"></td>
+		<td class="second"></td>
+		<td class="second"></td>
+		<td class="second"></td>
+		<td class="second"></td>
+		<td class="second"></td>
+		<td class="second"></td>
+		<td class="second"></td>
+	</tr>
+	<tr>
+		<td class="third"></td>
+		<td class="third"></td>
+		<td class="third"></td>
+		<td class="third"></td>
+		<td class="third"></td>
+		<td class="third"></td>
+		<td class="third"></td>
+		<td class="third"></td>
+	</tr>
+		<tr>
+		<td class="fourth"></td>
+		<td class="fourth"></td>
+		<td class="fourth"></td>
+		<td class="fourth"></td>
+		<td class="fourth"></td>
+		<td class="fourth"></td>
+		<td class="fourth"></td>
+		<td class="fourth"></td>
+	</tr>
+		<tr>
+		<td class="fifth"></td>
+		<td class="fifth"></td>
+		<td class="fifth"></td>
+		<td class="fifth"></td>
+		<td class="fifth"></td>
+		<td class="fifth"></td>
+		<td class="fifth"></td>
+		<td class="fifth"></td>
+	</tr>
+		<tr>
+		<td class="sixth"></td>
+		<td class="sixth"></td>
+		<td class="sixth"></td>
+		<td class="sixth"></td>
+		<td class="sixth"></td>
+		<td class="sixth"></td>
+		<td class="sixth"></td>
+		<td class="sixth"></td>
+	</tr>
+		<tr>
+		<td class="seventh">1</td>
+		<td class="seventh"></td>
+		<td class="seventh"></td>
+		<td class="seventh"></td>
+		<td class="seventh"></td>
+		<td class="seventh"></td>
+		<td class="seventh"></td>
+		<td class="seventh"></td>
+	</tr>
+</table>
+<div id="buttons">
+<button type="button" id="lime" class="button" style="background-color:lime;" onclick="limeButton()"></button>	
+<button type="button" id="red" class="button" style="background-color:red;" onclick="redButton()"></button>
+<button type="button" id="cyan" class="button" style="background-color:cyan;" onclick="cyanButton()"></button>
+<button type="button" id="black" class="button" style="background-color:black;" onclick="blackButton()"></button>
+<button type="button" id="yellow" class="button" style="background-color:yellow;" onclick="yellowButton()"></button>
+<button type="button" id="purple" class="button" style="background-color:purple;" onclick="purpleButton()"></button>
+</div>
+<div id="playerOne" class="score">
+<h2>Player 1 Score:</h2>
+<h2 id="oneScore">1</h2>
+</div>
+<div id="playerTwo" class="score">
+<h2>Player 2 Score:</h2>
+<h2 id="twoScore">1</h2>
+</div>
+</div>
+<script>
+	var selectWidth = "0px";
+	var selectHeight = "0px";
+	var board = [];
+	board.push(document.getElementsByClassName("first"));
+	board.push(document.getElementsByClassName("second"));
+	board.push(document.getElementsByClassName("third"));	
+	board.push(document.getElementsByClassName("fourth"));
+	board.push(document.getElementsByClassName("fifth"));
+	board.push(document.getElementsByClassName("sixth"));
+	board.push(document.getElementsByClassName("seventh"));
+	
+	var playerColors = [];
+	var colors = ["lime", "red", "cyan", "black", "yellow", "purple"];
+	board[6][0].style.backgroundColor = colors[rand(colors.length)];
+	var same = true;
+	
+	while (same){
+		board[0][7].style.backgroundColor = colors[rand(colors.length)];
+		if (board[6][0].style.backgroundColor != board[0][7].style.backgroundColor){
+			same = false;
+		}
+	}
+	
+	playerColors.push(board[6][0].style.backgroundColor);
+	playerColors.push(board[0][7].style.backgroundColor);
+	
+	for (var i=0; i<board.length; i++){
+		for (var j=0; j<board[i].length; j++){
+			if ((i === 0 && j === 7) || (i === 6 && j === 0)){}
+			else {
+				same = true;
+				while (same){
+					same = false;
+					setColorRandom(board[i][j]);
+					if (i >= 1){
+						if (board[i-1][j].style.backgroundColor === board[i][j].style.backgroundColor){
+							same = true;
+						}
+					}
+					if (i <= 5){
+						if (board[i+1][j].style.backgroundColor === board[i][j].style.backgroundColor){
+							same = true;
+						}
+					}
+					if (j >= 1){
+						if (board[i][j-1].style.backgroundColor === board[i][j].style.backgroundColor){
+							same = true;
+						}
+					}
+					if (j <= 6){
+						if (board[i][j+1].style.backgroundColor === board[i][j].style.backgroundColor){
+							same = true;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	var emptySquares = (board.length*board[0].length)-2;
+	var player = 0;
+	var lime = document.getElementById("lime");
+	var red = document.getElementById("red");
+	var cyan = document.getElementById("cyan");
+	var black = document.getElementById("black");
+	var yellow = document.getElementById("yellow");
+	var purple = document.getElementById("purple");	
+	var playerSquares = [[board[6][0]],[board[0][7]]];
+	
+	if (playerColors.indexOf("lime") != -1){
+		lime.disabled = true;
+		lime.hidden = true;
+	}
+	if (playerColors.indexOf("red") != -1){
+		red.disabled = true;
+		red.hidden = true;
+	}
+	if (playerColors.indexOf("cyan") != -1){
+		cyan.disabled = true;
+		cyan.hidden = true;
+	}
+	if (playerColors.indexOf("black") != -1){
+		black.disabled = true;
+		black.hidden = true;
+	}
+	if (playerColors.indexOf("yellow") != -1){
+		yellow.disabled = true;
+		yellow.hidden = true;
+	}
+	if (playerColors.indexOf("purple") != -1){
+		purple.disabled = true;
+		purple.hidden = true;
+	}
+	
+	var scores = [document.getElementById("oneScore"), document.getElementById("twoScore")];
+
+	function limeButton(){
+		pressButton("lime");
+	} 
+	
+	function redButton(){
+		pressButton("red");
+	}
+	
+	function cyanButton(){
+		pressButton("cyan");
+	}
+	
+	function blackButton(){
+		pressButton("black");
+	}
+	
+	function yellowButton(){
+		pressButton("yellow");
+	}
+	
+	function purpleButton(){
+		pressButton("purple");
+	}
+	
+	function pressButton(x){
+		playerColors[player] = x;
+		var buttons = document.getElementsByClassName("button");
+		for (var i=0; i<buttons.length; i++){
+			buttons[i].disabled = false;
+			buttons[i].hidden = false;
+		}
+		if (playerColors.indexOf("lime") != -1){
+			lime.disabled = true;
+			lime.hidden = true;
+		}
+		if (playerColors.indexOf("red") != -1){
+			red.disabled = true;
+			red.hidden = true;
+		}
+		if (playerColors.indexOf("cyan") != -1){
+			cyan.disabled = true;
+			cyan.hidden = true;
+		}
+		if (playerColors.indexOf("black") != -1){
+			black.disabled = true;
+			black.hidden = true;
+		}
+		if (playerColors.indexOf("yellow") != -1){
+			yellow.disabled = true;
+			yellow.hidden = true;
+		}
+		if (playerColors.indexOf("purple") != -1){
+			purple.disabled = true;
+			purple.hidden = true;
+		}
+		var adjacent = [];
+		for (var i=0; i<playerSquares[player].length; i++){
+			playerSquares[player][i].style.backgroundColor = x;
+			var temp = playerSquares[player][i].className;
+			var q;
+			switch (temp){
+				case "first": q = 0;
+				break;
+				case "second": q = 1;
+				break;
+				case "third": q = 2;
+				break;
+				case "fourth": q = 3;
+				break;
+				case "fifth": q = 4;
+				break;
+				case "sixth": q = 5;
+				break;
+				case "seventh": q = 6;
+				break;
+			}
+			if (q >= 1){
+				if (board[q-1][playerSquares[player][i].cellIndex].style.backgroundColor === x){
+					adjacent.push(board[q-1][playerSquares[player][i].cellIndex]);
+				}
+			}
+			if (q <= 5){
+				if (board[q+1][playerSquares[player][i].cellIndex].style.backgroundColor === x){
+					adjacent.push(board[q+1][playerSquares[player][i].cellIndex]);
+				}
+			}
+			if (playerSquares[player][i].cellIndex >= 1){
+				if (board[q][playerSquares[player][i].cellIndex-1].style.backgroundColor === x){
+					adjacent.push(board[q][playerSquares[player][i].cellIndex-1]);
+				}
+			}
+			if (playerSquares[player][i].cellIndex <= 6){
+				if (board[q][playerSquares[player][i].cellIndex+1].style.backgroundColor === x){
+					adjacent.push(board[q][playerSquares[player][i].cellIndex+1]);
+				}
+			}
+		}
+		for (var i=0; i<adjacent.length; i++){
+			if (playerSquares[0].indexOf(adjacent[i]) === -1 && playerSquares[1].indexOf(adjacent[i]) === -1){
+				playerSquares[player].push(adjacent[i]);
+				emptySquares--;
+			}
+		}
+		
+		scores[player].textContent = playerSquares[player].length;
+		
+		if (player === 0){
+			player++;
+		}
+		else {
+			player = 0;
+		}
+		
+		document.getElementById("turnNumber").textContent = "Player " + (player+1) + "\'s turn!";
+		
+		if (emptySquares === 0){
+			var endString = "Player ";
+			if (playerSquares[0].length > playerSquares[1].length){
+				endString += "1 wins!";
+			}
+			else if (playerSquares[0].length < playerSquares[1].length){
+				endString += "2 wins!";
+			}
+			else {
+				endString = "Tie!";
+			}
+			document.getElementById("turnNumber").textContent = endString;
+		}
+	}
+
+	function setColorRandom(x){
+		x.style.backgroundColor = colors[rand(colors.length)];
+	}
+	
+	function rand(x){
+		return Math.floor(Math.random()*x);
+	}
+</script>	
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    
+    <h1>Score: <span id="score">0</span></h1>
+    
+    <canvas id="invaderCanvas" width="800" height="600"></canvas>
+    
+    <script>
+    
+    var DISPLAY_WIDTH  = 800;
+    var DISPLAY_HEIGHT = 600;
+    
+    var SHIP_GROUND_LEVEL = DISPLAY_HEIGHT - 100;
+    
+    window.onload = function() {
+    
+        var game = new Game();
+        var player = new Player();
+        var scene = new Scene(game, player);
+        
+        var engine = {
+            updateModel: function() {
+                scene.updateModel();
+            },
+            displayModel: function() {
+                scene.paintBackground();
+                scene.drawShip();
+                scene.drawEnemy();
+                scene.drawMissile();
+            },
+            finished: function() {
+                return scene.finished();
+            }
+        };
+        
+        var ship = scene.getShip();
+        var missile = scene.getMissile();
+        setupInputCommands(ship, missile);
+        
+        var gameLoop = function() {
+            engine.updateModel();
+            engine.displayModel();
+
+            if (!engine.finished()) {
+                setTimeout(gameLoop, 100);
+            }
+            else {
+                gameCompleted();                
+            }
+        }
+        gameLoop();
+
+        function gameCompleted() {
+            if (game.playerWon) {
+                alert("Congratulations!");
+            }
+            else {
+                alert("Too bad... " + player.name);
+            }
+        }
+    }
+    
+    function Player() {
+        this.score = 0;
+        this.lives = 3;
+        this.name = "Voldemor";
+    }
+    
+    function Game() {
+        this.finished = false;
+        this.playerWon = false;
+    }
+    
+    function Scene(game, player) {
+        var ship = new Ship();
+        var enemy = new InvaderArmy();
+        var missile = new Missile();
+        
+        var canvas = document.getElementById('invaderCanvas');
+        var ctx = canvas.getContext('2d');
+        
+        var paint = function(bitmap) {
+            ctx.fillStyle = bitmap.color;
+            ctx.fillRect(bitmap.x, bitmap.y, bitmap.width, bitmap.height);
+        }
+        
+        this.getShip = function() { return ship; }
+        this.getMissile = function() { return missile; }
+        
+        this.finished = function() {
+            return game.finished;
+        }
+        
+        this.updateModel = function() {
+            enemy.moveNext();
+            missile.moveNext();                
+            this.handleCollisions();
+            
+            if (enemy.reachedBottom()) {
+                game.finished = true;
+                game.playerWon = false;
+            }
+        }
+
+        this.paintBackground = function() {
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+            
+        };
+
+        this.drawShip = function() {
+            paint(ship);
+        };
+        
+        this.drawEnemy = function() {
+            var invaders = enemy.getInvaders();
+            for (var j = 0; j < invaders.length; j++) {
+                paint(invaders[j]);
+            }
+        }
+        
+        this.drawMissile = function() {
+            if (missile.visible) {
+                paint(missile);
+            }
+        }
+
+        this.handleCollisions = function() {
+            var invaders = enemy.getInvaders();
+            for (var j = 0; j < invaders.length; j++) {
+                var invader = invaders[j];
+                
+                if (missile.hits( invader )) {
+                    // Take out missile from view
+                    missile.visible = false;
+                    
+                    // Explode Invader
+                    invader.color = 'red';
+                    invader.visible = false;
+                    
+                    // Update Score
+                    player.score += invader.points;
+                    var scoreElt = document.getElementById('score');
+                    scoreElt.innerHTML = player.score;
+                }
+            }
+        }
+    };
+
+    function Ship() {
+        this.x = 400;
+        this.y = SHIP_GROUND_LEVEL;
+        this.color = 'rgb(255, 64, 64)';
+        this.width = 30;
+        this.height = 20;
+    
+        var speed = 20;
+    
+        this.moveRight =  function() {
+            if (this.x + speed < DISPLAY_WIDTH-100) {
+                this.x += speed;
+            }
+        }
+        this.moveLeft = function() {
+            if (this.x - speed > 50) {
+                this.x -= speed;
+            }
+        }
+    
+        this.fire = function() {
+            alert("Fire");
+        }
+    }
+
+    function InvaderArmy() {
+        var MOVE_LEFT   = 0;
+        var MOVE_RIGHT  = 1;
+        var MOVE_DOWN   = 2;
+        
+        var invaders = [];
+        
+        var enemyReachedBottom = false;
+        
+        var moveDir = MOVE_RIGHT
+          , lastHorizontalDir = moveDir
+          , dx = 0, dy = 0
+          , maxdx = 100   // move between -100 to 100
+          , maxdy = 10    // increment depends on invader.moveDown()
+          ;
+        
+        this.setupInvaders = function(invadersPerRow) {
+            var deltaX = (DISPLAY_WIDTH-200) / invadersPerRow;
+            var deltaY = 30;
+            
+            var startX = 100;
+            
+            var x = startX;
+            var y = 50;
+            
+            var points;
+            
+            for (var rows = 0; rows < 5; rows++) {
+                var x = startX;
+                y += deltaY;
+                
+                if (rows == 0) {
+                    color = '#64a242'; points = 50;
+                }
+                else if (rows < 3) {
+                    color = '#abcabc'; points = 20;
+                }
+                else {
+                    color = '#bada55'; points = 10;
+                }
+                
+                for (var j = 0; j < invadersPerRow; j++) {
+                    var invader = new Invader(color, points);
+                    invader.y = y;
+                    invader.x = x;
+                    x += deltaX;
+                    invaders.push(invader);
+                }
+            }
+        }
+        
+        this.getInvaders = function() {
+            return invaders;
+        }
+        
+        var getRightMostInvader = function() {
+            return invaders[invaders.length-1];
+        };
+        
+        var getLeftMostInvader = function() {
+          return invaders[0];
+        };
+        
+        this.reachedBottom = function() {
+            return enemyReachedBottom;
+        };
+        
+        
+        this.moveNext = function() {
+
+            if (moveDir === MOVE_RIGHT) {
+                for (var j = 0; j < invaders.length; j++) {
+                    var invader = invaders[j];
+                    invader.moveRight();
+                }
+            }
+            else if (moveDir === MOVE_LEFT) {
+                for (var j = 0; j < invaders.length; j++) {
+                    var invader = invaders[j];
+                    invader.moveLeft();
+                }        
+            }
+            else if (moveDir === MOVE_DOWN) {
+                for (var j = 0; j < invaders.length; j++) {
+                    var invader = invaders[j];
+                    invader.moveDown();
+                }        
+            }
+            
+            if (moveDir !== MOVE_DOWN) {
+                lastHorizontalDir = moveDir;
+            }
+
+            // Change direction?
+            
+            var leftmost = getLeftMostInvader();
+            var rightmost = getRightMostInvader();
+            
+            var canMoveRight = rightmost.canMoveRight();
+            var canMoveLeft = leftmost.canMoveLeft();
+            
+            if ((moveDir === MOVE_RIGHT && !canMoveRight) || (moveDir === MOVE_LEFT && !canMoveLeft)) {
+                moveDir = MOVE_DOWN;
+            }
+            else
+            if (moveDir === MOVE_DOWN) {
+                dy += invader.speed;
+                
+                if (dy > maxdy) {
+                    dy = 0;
+                    moveDir = (lastHorizontalDir === MOVE_LEFT) ? MOVE_RIGHT : MOVE_LEFT;
+                }
+                var bottom = rightmost;
+                
+                if (!bottom.canMoveDown()) {
+                    enemyReachedBottom = true;
+                }
+            }
+        };
+        this.setupInvaders(10);
+    }
+
+    function Invader(color, points) {
+        this.x = 400;
+        this.y = 200;
+        this.width = 30;
+        this.height = 20;
+        this.color = color || 'red';
+        this.points = points || 10;
+        this.visible = true;
+        
+        this.speed = 5;
+        
+        this.canMoveRight = function() {
+            if (this.x + this.speed < DISPLAY_WIDTH-100) {
+                return true;
+            }
+            return false;
+        }
+
+        this.moveRight = function() {
+            if (this.x + this.speed < DISPLAY_WIDTH-100) {
+                this.x += this.speed;
+            }
+        }
+        
+        this.canMoveLeft = function() {
+            if (this.x - this.speed > 50) {
+                return true;
+            }
+            return false;
+        }
+
+        this.moveLeft = function() {
+            if (this.x - this.speed > 50) {
+                this.x -= this.speed;
+            }
+        }
+        
+        this.canMoveDown = function() {
+            if (this.y + this.speed/2 < SHIP_GROUND_LEVEL) {
+                return true;
+            }
+            return false;            
+        }
+
+        this.moveDown = function() {
+            if (this.y + this.speed/2 < SHIP_GROUND_LEVEL) {
+                this.y += this.speed/2;
+            }
+        }        
+    }
+    
+    function Missile() {
+        this.x = 400;
+        this.y = SHIP_GROUND_LEVEL;
+        this.color = 'rgb(64, 255, 255)';
+        this.width = 5;
+        this.height = 10;
+        this.speed = 20;
+
+        this.visible = false;
+
+        this.position = function(x) {
+            if (!this.visible) {            // only reposition if missile if it's not already active
+                this.visible = true;
+                this.y = SHIP_GROUND_LEVEL;
+                this.x = x;
+            }
+        }
+
+        this.moveNext = function() {
+            if (this.visible) {
+                if (this.y - this.speed > 0) {
+                    this.y -= this.speed;
+                }
+                else {
+                    this.visible = false;
+                }
+            }
+        }
+        
+        this.hits = function(invader) {
+            if (!invader.visible) {
+                return false;
+            }
+            
+            // Check for overlap between this.[x, y, w, h] and invader.[x, y, w, h]
+            var collision = false;
+            
+            // We "know" that missiles are "thinner" than enemy ships.
+            // Therefore, the missile "must" be within the width of the invader
+            
+            var m = this; // missile
+            
+            var xInside = (invader.x <= m.x && m.x + m.width < invader.x + invader.width);
+            if (xInside) {
+                // For y, we need "some" overlap, but using strict "inside" enemy check                
+                if (invader.y <= m.y && m.y + m.width < invader.y + invader.height) {
+                    collision = true;
+                }
+            }
+            return collision;
+        }
+    }
+    
+    // -------------------------------------
+    
+    function setupInputCommands(ship, missile) {
+		var CMD_FIRE = "fire";
+		var CMD_SHIP_LEFT = "ship-left";
+		var CMD_SHIP_RIGHT = "ship-right";
+
+		var handleCommand = function(command) {
+		    switch(command) {
+		        case CMD_FIRE           : missile.position(ship.x);     break;
+		        case CMD_SHIP_LEFT      : ship.moveLeft();              break;
+		        case CMD_SHIP_RIGHT     : ship.moveRight();             break;
+		        default:
+		            throw new Error("Command not recognized: " + command);
+		    }
+		}
+
+		var SPACE = 32;
+		var LEFT_ARROW = 37;
+		var RIGHT_ARROW = 39;
+
+		var onKeyDown = function(event){
+			switch (event.keyCode) {
+				case SPACE:         handleCommand(CMD_FIRE);        break;
+				case LEFT_ARROW:    handleCommand(CMD_SHIP_LEFT);   break;
+				case RIGHT_ARROW:   handleCommand(CMD_SHIP_RIGHT);  break;
+			}
+		}
+        document.addEventListener('keydown', onKeyDown, false);                
+    }
+    
+    </script>
+</body>
+</html>

@@ -17,7 +17,22 @@ function highlight() {
 
 
 
-
+function galleryShow(linkID, imgSrc){
+	mouseX = event.clientX;
+	mouseY = event.clientY;
+	console.log("Gallery is shown");
+	xPos = mouseX + 100;
+	yPos = mouseY + 10;
+	document.getElementById("galleryDiv").style.left = xPos + "px";
+	document.getElementById("galleryDiv").style.top = yPos + "px";
+	document.getElementById("galleryDiv").style.display = "block";
+	document.getElementById("galleryImg").src = "img/" + imgSrc;
+	console.log("img/" + imgSrc);
+}
+function galleryHide(linkID){
+	document.getElementById("galleryDiv").style.display = "none";
+	console.log("Gallery is hidden");
+}
 
 
 

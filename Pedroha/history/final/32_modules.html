@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <audio id="shootSound"          src="sounds/shoot.wav"           preload="auto"></audio>
+    <audio id="fastInvader1Sound"   src="sounds/fastinvader1.wav"    preload="auto"></audio>
+    <audio id="fastInvader2Sound"   src="sounds/fastinvader2.wav"    preload="auto"></audio>
+    <audio id="fastInvader3Sound"   src="sounds/fastinvader3.wav"    preload="auto"></audio>
+    <audio id="invaderKilledSound"  src="sounds/invaderkilled.wav"   preload="auto"></audio>
+    <audio id="explosionSound"      src="sounds/explosion.wav"       preload="auto"></audio>
+    
+    <canvas id="invaderCanvas" width="800" height="600"></canvas>
+
+    <script>
+    
+        var SOUND_ON = true;
+        var NUM_MISSILES = 3;
+
+        var DEBUG_BLOCK_PAINTER = false;
+
+        var TEXT_OVERLAY_COLOR = "#00ff00"; // "white";
+        
+        var space_invaders = {};
+
+    </script>
+
+    <script src="modules/space_invaders.util.js"></script>
+    <script src="modules/space_invaders.sprites.js"></script>
+    <script src="modules/space_invaders.scene.js"></script>
+    <script src="modules/space_invaders.input.js"></script>
+    <script src="modules/space_invaders.app.js"></script>
+
+    <script>
+        space_invaders.app.startGame();
+    </script>
+</body>
+</html>
+
