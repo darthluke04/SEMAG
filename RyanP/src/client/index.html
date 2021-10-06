@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Tank Ace</title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+        <script src="js/app.js"></script>
+    </head>
+    <body class="dark-background">
+        <!-- tabindex attribute is necessary for canvas to receive key input -->
+        <canvas id="game_canvas" tabindex="1"></canvas>
+        <div id="leaderboard"></div>
+        <div id="boost">
+            <div class="progress">
+                <div id="boost-bar" class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <img id='background_image' src="img/background-v2.png" style="display: none;" />
+    </body>
+</html>
