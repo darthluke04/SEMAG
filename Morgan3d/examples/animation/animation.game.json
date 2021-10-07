@@ -1,0 +1,65 @@
+{
+    "title": "Animation Example",
+    "developer": "Casual Effects",
+    "copyright": "2019 Casual Effects",
+    "license": "CC0/Public Domain",
+    "screen_size": {
+        "x": 192,
+        "y": 112
+    },
+    "packages": [],
+    "scripts": [],
+    "start_mode": "Play",
+    "modes": [
+        "Play"
+    ],
+    "assets": {
+        "font": "quad://fonts/good-neighbors-9.font.json",
+        "instruction_font": "quad://fonts/cga-7.font.json",
+        "ninja_spritesheet": "quad://sprites/ninja-black-32x32.sprite.json",
+        "sword_spritesheet": "quad://sprites/ninja-sword-32x32.sprite.json",
+        "bow_spritesheet": "quad://sprites/ninja-bow-32x32.sprite.json"
+    },
+    "constants": {
+        "GROUND_Y": {
+            "type": "number",
+            "value": "60",
+            "description": "Pixels from the top of the screen",
+            "min": 20,
+            "max": 111,
+            "quantum": 0
+        },
+        "ARROW_LENGTH": {
+            "type": "number",
+            "value": 12,
+            "description": "In pixels",
+            "min": 2,
+            "max": 100,
+            "quantum": 1
+        },
+        "GRAVITY": {
+            "type": "number",
+            "value": 0.1,
+            "min": 0.01,
+            "max": 1,
+            "format": "0.0"
+        },
+        "JUMP_SPEED": {
+            "type": "number",
+            "value": 2.5,
+            "description": "Pixels/frame",
+            "min": 0.1,
+            "max": 10,
+            "format": "0.0"
+        },
+        "RUN_SPEED": {
+            "type": "number",
+            "value": 1.5,
+            "description": "Pixels/frame",
+            "min": 0.1,
+            "max": 10,
+            "format": "0.0"
+        }
+    },
+    "screenshot_tag": "Animation Example"
+}

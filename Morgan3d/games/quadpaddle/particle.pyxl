@@ -1,0 +1,88 @@
+let particle_array = []
+
+// Create a single moving particle
+def create_particle(pos, vel, color, z, life):
+   push(particle_array, {pos: clone(pos), vel:vel, color: clone(color), z: z, life: life})
+
+   
+// Explode an entity away from the impact point
+def entity_to_particles_hit(entity, impactPoint, impactVel, minSpeed, maxSpeed, maxLife):
+   entity_to_particles(entity, impactPoint, impactVel, xy(0, 0), 0, 0, minSpeed, maxSpeed, maxLife)
+
+
+// Melt an entity at the end of the game
+def entity_to_particles_melt(entity, dir, minSpeed, maxSpeed, maxLife):
+   const ignore = xy(0, 0)
+   entity_to_particles(entity, ignore, ignore, dir, minSpeed, maxSpeed, 0, 0, maxLife)
+
+
+// Convert an entity's sprite into a particle system
+def entity_to_particles(entity,
+                        impactPoint, impactVel,
+                        uniformVelDir, minUniformSpeed, maxUniformSpeed,
+                        minAwaySpeed, maxAwaySpeed,
+                        maxLife):
+
+   const sprite = entity.sprite
+   const pos = entity.pos
+   const z = entity.z + ½
+   const center = ½ (sprite.size - 1)
+   const U = xy(cos(entity.angle), -sin(entity.angle) * rotation_sign())
+   const V = perp(U)
+   
+   for y < sprite.size.y:
+      for x < sprite.size.x:
+         const spritePos = xy(x, y)
+         const color = get_sprite_pixel_color(sprite, spritePos)
+         
+         // Entity space position
+         const ePos = (spritePos - center) * entity.scale
+
+         // Draw space position
+         const particlePos = pos + U * ePos.x + V * ePos.y
+         
+         const awayVel = direction(particlePos - impactPoint) * ((maxAwaySpeed - minAwaySpeed) * ξ + minAwaySpeed)
+         const uniformVel = uniformVelDir * ((maxUniformSpeed - minUniformSpeed) * ξ + minUniformSpeed)
+         const partVel = (entity.vel + impactVel) * (½ ξ + ¼) + awayVel + uniformVel
+         create_particle(particlePos, partVel, color, z, lerp(30%, 100%, ξ²) * maxLife)
+
+
+         
+// Could register this with a frame hook, but some modes pause particles
+// and some don't, so keep it as an explicit call
+def process_particles():
+
+   // There are a LOT of particles, so avoid the cost of a WITH statement
+   // here.
+   //
+   // Also, particles will render fastest if they are kept grouped by z
+   // value, so we preserve the order of the array when removing elements
+   // by always copying elements during iteration to close gaps, amortizing
+   // the cost of in-order removal.
+   
+   const N = size(particle_array)
+
+   // Place to copy the next element to
+   let dst = 0
+
+   // Iterate over all particles. src == dst and no actual copy happens
+   // until they start being removed and these separate
+   for src < N:
+      const particle = particle_array[src]
+      if src > dst: particle_array[dst] = particle
+      
+      --particle.life
+      if particle.life ≥ 0:
+         // Fade out near end of life
+         if particle.life < 10: particle.color.a *= 95%
+
+         // Integrate
+         const pos = particle.pos
+         XY_ADD_XY(pos, particle.vel, pos)
+         draw_point(pos, particle.color, particle.z)
+
+         // Preserve this element
+         ++dst
+         
+   // Remove extra elements
+   if dst < N: resize(particle_array, dst)

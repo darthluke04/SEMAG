@@ -1,0 +1,28 @@
+{
+    "title":      "Text Example",
+    "developer":  "Casual Effects",
+    "copyright":  "©2019 Morgan McGuire",
+    "license":    "CC0/Public Domain",
+
+    "packages":   [],
+    "scripts":    [],
+    "modes":      ["Play"],
+    "start_mode": "Play",
+    "assets":     {
+        "font": "quad://fonts/roman-8.font.json",
+        "runeFont": "quad://fonts/runes-9.font.json",
+        "buttonFont": "quad://fonts/fool-9.font.json",
+        "uiSpritesheet": "quad://sprites/dawnlike-ui-16x16.sprite.json"
+    },
+
+    "constants":  {
+        "quest": {"type": "string", "value":
+`At the top of the hill, seek the {color:rgb(80%, 0, 50%) giant tree} 
+with \`\`{color:#094 {font:runeFont FATE}}'' carved in its bark.
+
+Walk five paces due {color:rgb(80%, 0, 50%) East} from the tree.
+Dig until you find the treasure.`}
+                  
+    }
+
+}

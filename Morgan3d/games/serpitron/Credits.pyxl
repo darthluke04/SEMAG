@@ -1,0 +1,35 @@
+Credits
+════════════════════════════════════════════════════════════════════════
+
+const creditsFramesPerScreen = 40
+const creditOrder = ["Game", "Sprite", "Font", "Sound", "Code"]
+
+
+
+frame
+────────────────────────────────────────────────────────────────────────
+if mode_frames <= creditsFramesPerScreen:
+   // Scroll out the previous mode
+   draw_previous_mode()
+   set_post_effects({background: #0, pos:xy(0, -SCREEN_SIZE.y * mode_frames / creditsFramesPerScreen)})
+else:
+   set_background(#0)
+   reset_post_effects()
+
+   let creditsScroll = max(mode_frames - creditsFramesPerScreen, 0) 
+   let y = SCREEN_SIZE.y + 15
+   preserving_transform:  
+      set_transform(xy(0, -creditsScroll))
+
+      draw_text(instructionsFont, assetCredits.title, xy(SCREEN_SIZE.x / 2, y), gray(100%), gray(60%), gray(60%), 0, 0); y += 25
+      draw_text(font, "by " + assetCredits.developer, xy(SCREEN_SIZE.x / 2, y), gray(100%), gray(60%), nil, 0, 0); y += 50
+
+      for type in creditOrder:
+         let s = type
+         y += draw_text(instructionsFont, s, xy(SCREEN_SIZE.x / 2, y), gray(100%), gray(60%), nil, 0, 2).y
+   
+         for line in assetCredits[lowercase(type)]:
+            y += draw_text(font, line, xy(SCREEN_SIZE.x / 2, y), gray(60%), nil, nil, 0, 2, 0, SCREEN_SIZE.x).y + 10
+   
+   if (y - creditsScroll < -SCREEN_SIZE.y) or any_button_press():
+      pop_mode() because "Animation done"

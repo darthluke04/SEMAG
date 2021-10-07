@@ -1,0 +1,61 @@
+GameOver
+════════════════════════════════════════════════════════════════════════
+
+
+enter
+────────────────────────────────────────────────────────────────────────
+reset_clip()
+reset_transform()
+reset_post_effects()
+
+if backgroundSound: stop_audio(backgroundSound)
+backgroundSound = play_sound(titleMusic, true)
+
+sort(snakeArray, "score", true)
+
+frame
+────────────────────────────────────────────────────────────────────────
+set_background(#a)
+draw_text({font: largeFont, text: "FINAL RANKING", pos: xy(SCREEN_SIZE.x / 2, 30),
+          color: #f, shadow: #0004, x_align: "center", y_align: "center"})
+
+let y = 90
+for s < size(snakeArray):
+   const snake = snakeArray[s]
+
+   let scale = 1
+   let x = 60 + 12 s
+
+   // Show the winner snake larger
+   if s == 0:
+      scale = 1.5
+      x -= 39
+
+   // Tail
+   draw_sprite(snake.tailSprite, xy(x, y + sin(mode_frames / 5) * scale), 0, scale); x += 4 scale
+
+   // Body
+   let dy
+   for i < 8 + 3 (3 - s):
+      dy = sin(i + mode_frames / 5) * scale
+      draw_sprite(snake.bodySprite, xy(x, y + dy + 2), 0, scale, 1, -1, #8)
+      draw_sprite(snake.bodySprite, xy(x, y + dy), 0, scale)
+      x += 4 scale
+      
+   // Head
+   draw_sprite(snake.headSprite, xy(x, y + dy), 0, scale)
+
+   let hat
+   if s == 0:                               hat = hatSpritesheet.crown
+   else if s == 1 and size(snakeArray) > 2: hat = hatSpritesheet.tiara
+   else if s == size(snakeArray) - 1:       hat = hatSpritesheet.beanie
+
+   if hat: draw_sprite(hat, xy(x, y + dy - 5 scale), 0, scale)
+      
+   draw_text({font: font, text: format_number(s + 1, "ordinalabbrev"), pos: xy(150, y), color: snake.text_color, outline: snake.color, y_align:"center"})
+   y += draw_text({font: font, text: format_number(snake.score, "commas"), pos: xy(270, y), color: snake.text_color, outline: snake.color, x_align:"right", y_align:"center"}).size.y + 10
+
+
+if mode_frames > 120 and any_button_press():
+   set_mode(Title) because "any_button_press()"
+   

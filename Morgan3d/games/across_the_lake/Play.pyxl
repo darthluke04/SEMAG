@@ -1,0 +1,22 @@
+Play
+════════════════════════════════════════════════════════════════════════
+
+enter
+────────────────────────────────────────────────────────────────────────
+start_pos = cam_pos.x
+play_sound(SFXTHROW)
+reset_skippy()
+
+
+frame
+────────────────────────────────────────────────────────────────────────
+
+update_skippy(start_pos)
+
+if skippy_hit_water_this_frame == mode_frames: 
+    spawn_splash(skippy_splash_type)
+   
+update_camera(skippy_position + xy(14 * skippy_velocity.x, 0))
+draw_game()
+draw_title_ui()
+

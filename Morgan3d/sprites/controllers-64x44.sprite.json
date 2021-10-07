@@ -1,0 +1,32 @@
+{
+    "url": "controllers-64x44.png",
+    "license": "© 2020 Morgan McGuire. Licensed as CC BY 4.0 https://creativecommons.org/licenses/by/4.0/",
+    "sprite_size": {"x":64, "y":44},
+    "names": {
+        "PS3":         {"x": 0, "y": 0},
+        "PS4":         {"x": 0, "y": 0},
+        "Xbox360":     {"x": 1, "y": 0},
+        "SNES":        {"x": 2, "y": 0},        
+        "Zero":        {"x": 3, "y": 0},
+        "Quadplay":    {"x": 4, "y": 0},
+        "Keyboard":    {"x": 5, "y": 0},
+        "Kbd_Alt":     {"x": 6, "y": 0},
+        "Kbd_P1":      {"x": 7, "y": 0},
+        "Kbd_P2":      {"x": 8, "y": 0},
+        "HOTAS":       {"x": 0, "y": 1},
+        "SwitchPro":   {"x": 1, "y": 1},
+        "JoyCon_R":    {"x": 2, "y": 1},
+        "JoyCon_L":    {"x": 3, "y": 1},
+        "Stadia":      {"x": 4, "y": 1},
+        "GPD_Win":     {"x": 5, "y": 1},
+        "SN30_Pro":    {"x": 6, "y": 1},
+        "PS5":         {"x": 7, "y": 1},
+        "Xbox":        {"x": 8, "y": 1},
+        "Arcade":      {"x": 0, "y": 2},
+        "Arcade_X":    {"x": 1, "y": 2},
+        "Arcade_PS":   {"x": 2, "y": 2},
+        "X_Arcade":    {"x": 3, "y": 2},
+        "PiBoy_DMG":   {"x": 4, "y": 2},
+        "Genesis":     {"x": 5, "y": 2}
+    }
+}

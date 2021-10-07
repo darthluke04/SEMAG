@@ -1,0 +1,5 @@
+draw_previous_mode()
+draw_text(font, "You Drowned!", xy(½ SCREEN_SIZE.x, min(½ SCREEN_SIZE.y, ¼ mode_frames)),
+         #f55, #aaa, #fff, 0, 0, 12)
+
+if (mode_frames > 7 * 60) or any_button_press(): set_mode(Credits, "7 seconds")

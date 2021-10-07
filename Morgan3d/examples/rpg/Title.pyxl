@@ -1,0 +1,33 @@
+Title
+════════════════════════════════════════════════════════════════════════════
+
+let creditsString = ""
+for section ∈ CREDITS:
+    if is_array(section):
+        for line ∈ section:
+            creditsString += line + "  |  "
+
+const creditsWidth = text_width(smallFont, creditsString) + SCREEN_SIZE.x
+
+play_sound(music, true)
+
+
+
+frame
+────────────────────────────────────────────────────────────────────────────
+
+set_background(#9)
+
+preserving_transform:
+   const y = mode_frames mod (worldMap.size.y * worldMap.sprite_size.y)
+   set_transform(xy(0, y), ∅, -3)
+   draw_map(worldMap)
+
+draw_text(smallFont, "quadplay✜", xy(½ SCREEN_SIZE.x, 8), #f049ad, ∅, #444, "center", "middle")
+draw_text(font, CREDITS.title, ½ SCREEN_SIZE, #f049ad, #9c1d69, #222, "center", "middle")
+draw_text(smallFont, "by " + CREDITS.developer, ½ SCREEN_SIZE + xy(0, 30), #ddd, ∅, #222, "center", "bottom")
+
+if ⌊⅕ mode_frames⌋ mod 10 < 6: draw_text(smallFont, "Press Any Button", ½ SCREEN_SIZE + xy(0, 60), #ff8, #444, ∅, "center", "middle")
+draw_text(smallFont, creditsString, xy(SCREEN_SIZE.x - loop(2 mode_frames, creditsWidth), 216), #ddd, ∅, #222)
+
+if any_button_press(): set_mode(Play, "any_button_press()")

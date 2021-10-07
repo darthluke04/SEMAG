@@ -1,0 +1,115 @@
+{
+    "assets": {
+        "ballSprite": "ball.sprite.json",
+        "beatLevelSound": "quad://sounds/wild-08.sound.json",
+        "borderSprite": "quad://sprites/kenney-ui-16x16.sprite.json",
+        "cornerSprite": "corner.sprite.json",
+        "destroyBlockSound": "quad://sounds/explode-08.sound.json",
+        "font": "quad://fonts/good-neighbors-9.font.json",
+        "hitPaddleSound": "quad://sounds/powerup-03.sound.json",
+        "levelTemplate": "levels.map.json",
+        "logo": "logo.sprite.json",
+        "loseBallSound": "quad://sounds/wild-05.sound.json",
+        "mediumFont": "quad://fonts/deja-8.font.json",
+        "menuSound": "quad://sounds/blip-17.sound.json",
+        "music": "quad://sounds/loop-arcade.sound.json",
+        "paddleSprite": "paddle.sprite.json",
+        "pauseSound": "quad://sounds/jump-07.sound.json",
+        "powerupSound": "quad://sounds/powerup-07.sound.json",
+        "powerupSpawnSound": "quad://sounds/powerup-08.sound.json",
+        "scoreSound": "quad://sounds/coin-00.sound.json",
+        "sparkleSprite": "sparkle.sprite.json",
+        "tinyFont": "quad://fonts/scoreboard-6.font.json",
+        "unbreakableSound": "quad://sounds/coin-04.sound.json",
+        "wordSprite": "words-224x64.sprite.json",
+        "shieldSprite": "shield.sprite.json"
+    },
+    "constants": {
+        "DEFAULT_TEXT_COLOR": {
+            "type": "rgb",
+            "value": {
+                "b": {
+                    "type": "number",
+                    "value": 0.8
+                },
+                "g": {
+                    "type": "number",
+                    "value": 0.8
+                },
+                "r": {
+                    "type": "number",
+                    "value": 0.8
+                }
+            }
+        },
+        "LEVEL_TIME": {
+            "type": "number",
+            "value": 240
+        },
+        "MAX_SPARE_BALLS": {
+            "type": "number",
+            "value": 9
+        },
+        "PADDLE_SPEED": {
+            "type": "number",
+            "value": 3
+        },
+        "STARTING_SPARE_BALLS": {
+            "type": "number",
+            "value": 7
+        },
+        "INITIAL_BALL_SPEED": {
+            "type": "number",
+            "value": "1.3"
+        },
+        "POWERUP_DROP_CHANCE": {
+            "type": "number",
+            "value": "65%"
+        },
+        "MAX_POWERUPS": {
+            "type": "number",
+            "value": "3"
+        },
+        "MAX_BALLS": {
+            "type": "number",
+            "value": "11"
+        },
+        "OTHER_AXIS" : {
+            "type": "object",
+            "value": {"x": "y", "y": "x"}
+        },
+        "BACKGROUND_COLOR" : {
+            "type" : "rgb",
+            "value": {"r": 0.28, "g": 0.36, "b": 0.55}
+        },
+        "AREA_SIZE": 224
+
+    },
+    "copyright": "\u00a92019 Morgan McGuire",
+    "developer": "Casual Effects",
+    "license": "Source code \u00a92019 Morgan McGuire, available under the BSD License https://opensource.org/licenses/BSD-2-Clause",
+    "start_mode": "Title",
+    "modes": [
+        "Title",
+        "Play",
+        "BeatLevel",
+        "GameOver",
+        "Win"
+    ],
+    "packages": [],
+    "scripts": [
+        "quadpaddle.pyxl",
+        "particle.pyxl"
+    ],
+    "title": "quadpaddle",
+    
+    "version":      0.5,
+    "description":  "Blast bricks as a team from all four sides, grabbing powerups and racking up points.",
+    "min_players":   1,
+    "max_players":   4,
+    "cooperative":  true,
+    "competitive":  false,
+    "achievements": false,
+    "highscores":   false
+
+}

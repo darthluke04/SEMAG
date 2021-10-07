@@ -1,0 +1,186 @@
+NewLevel
+════════════════════════════════════════════════════════════════════════
+
+def spawnPowerups():
+   if level == 0:
+      // First wave is always apples
+      waveType = "Apples"
+   else:
+      // Spawn new wave
+      const lastWaveType = waveType
+      waveType = ∅
+      while waveType == ∅ or waveType == lastWaveType:
+         waveType = random_value(waveTypeArray)
+      
+      // Score disparity increases the probability of a showdown
+      if (size(snakeArray) > 1 and
+          snakeArray[0].score > 400000 and
+          snakeArray[0].score > 170% last_value(snakeArray).score and
+          (ξ < 35% or level == numLevels - 1) and
+          lastWaveType != "Showdown"):
+         waveType = "Showdown"
+
+   // No showdowns in single-player games
+   if size(snakeArray) == 1 and waveType == "Showdown": waveType = "Diamonds"
+
+   for snake in snakeArray:
+      snake.hasGun = false
+
+   if waveType == "Apples":
+      for i < 6 sqrt(size(snakeArray)):
+         push(powerupArray, {sprite: powerupSpritesheet.apple, type: "grow", pos: randomEmptyPosition(), 
+                             value: growAmount, sound: bigGrowAudioClip})
+   else if waveType == "Diamonds":
+      for i < 4 size(snakeArray):
+         push(powerupArray, {sprite: powerupSpritesheet.diamond, type: "points", pos: randomEmptyPosition(), 
+                             value: pointBonus, sound: bigPointsAudioClip})
+   else if waveType == "Cherries":
+      for i < 16 sqrt(size(snakeArray)):
+         push(powerupArray, {sprite: powerupSpritesheet.cherry, type: "grow", pos: randomEmptyPosition(), 
+                             value: ⌊¼ growAmount⌋, sound: smallGrowAudioClip})
+   else if waveType == "Gold":
+      for i < 18 sqrt(size(snakeArray)):
+         push(powerupArray, {sprite: powerupSpritesheet.coin, type: "points", pos: randomEmptyPosition(), 
+                             value: ⌊¼ pointBonus⌋, sound: smallPointsAudioClip})         
+   else if waveType == "Showdown":
+      // Not too many apples on showdown levels or in two player
+      // mode the leader gets slaughtered
+      for i < 5 size(snakeArray):
+         push(powerupArray, {sprite: powerupSpritesheet.star, type: "points", pos: randomEmptyPosition(), 
+                             value: ⌊¼ pointBonus⌋, sound: smallPointsAudioClip})
+      for snake in snakeArray:
+         snake.hasGun = (snake != snakeArray[0]) and (snake.score ≤ ½(snakeArray[0].score + last_value(snakeArray).score))
+         
+   else if waveType == "Rats":
+      for i < 16 size(snakeArray):
+         push(powerupArray, {sprite: ratSpritesheet[0][0], type: "grow", pos: randomEmptyPosition(), 
+                             value: growAmount, sound: bigGrowAudioClip,
+                             angle: 90° random_integer(0, 3),
+                             speed: 0.25 random_integer(1, 3)})
+   else if waveType == "Coffee Break":
+      for i < 21 sqrt(size(snakeArray)):
+         push(powerupArray, {sprite: powerupSpritesheet.coffee, type: "speed", pos: randomEmptyPosition(), 
+                             value: 1.5, sound: speedUpAudioClip})
+      for i < 11 sqrt(size(snakeArray)):
+         push(powerupArray, {sprite: powerupSpritesheet.donut, type: "speed", pos: randomEmptyPosition(), 
+                             value: 0.5, sound: slowDownAudioClip})
+
+
+         
+def spawnBuildings():
+   if locationName == "Country":
+      return
+   else if locationName == "Urban":
+      const sprite = skyscraperSprite[0][0]
+      for 0 < i < 10:
+         let y = random_integer(sprite.size.y, playSize.y - sprite.size.y)
+         if i == 4 or i == 5 or i == 7 or i == 8: y = playSize.y / 2
+         push(buildingArray, {
+            pos: xy(round(i * playSize.x / 10, cellSide), round(y, cellSide)),
+               sprite: sprite, size: sprite.size, shape: "rect", shadowShape: "rect"})
+            
+   else if locationName == "Desert":
+      const sprite = pyramidSprite[0][0]
+      
+      // center X, random 1/3 Y
+      if ξ < 75%:
+         push(buildingArray, {
+            pos:    xy(round(playSize.x / 2, cellSide), round(random_integer(sprite.size.y, playSize.y / 2 - sprite.size.y / 2), cellSide)) + cellSide / 2,
+            sprite: sprite, size: sprite.size, shape: "rect", shadowShape: "tri"})
+
+      // center X, random 2/3 Y
+      if ξ < 75%:
+         push(buildingArray, {
+            pos:    xy(round(playSize.x / 2, cellSide), round(random_integer(playSize.y / 2 + sprite.size.y / 2, playSize.y - sprite.size.y), cellSide)) + cellSide / 2,
+            sprite: sprite, size: sprite.size, shape: "rect", shadowShape: "tri"})
+         
+      // random 1/3 X, center Y
+      if ξ < 75%:
+         push(buildingArray, {
+            pos:    xy(round(random_integer(sprite.size.x, playSize.x / 2 - sprite.size.x), cellSide),
+                       round(playSize.y / 2, cellSide)) + cellSide / 2,
+            sprite: sprite, size: sprite.size, shape: "rect", shadowShape: "tri"})
+         
+      // random 2/3 X, center Y
+      if ξ < 75%:
+         push(buildingArray, {
+            pos:    xy(round(random_integer(playSize.x / 2 + sprite.size.x, playSize.x - sprite.size.x), cellSide),
+                       round(playSize.y / 2, cellSide)) + cellSide / 2,
+            sprite: sprite, size: sprite.size, shape: "rect", shadowShape: "tri"})
+
+
+         
+def spawnWeather():
+   if weatherType == "Blizzard":
+      while size(weatherArray) < 50:
+         push(weatherArray, make_entity({
+            pos: xy(random(-50, playSize.x + 50), random(-50, playSize.y + 50)),
+            vel: xy(random(-0.5, 0.5), -random(0.1, 0.5)),
+            sprite: random_value(snowflakeSprite[0]),
+            angle: random(0, 360deg),
+            spin: random(-1deg, 1deg),
+            scale: random(1, 2),
+            z: 20
+         }))
+   else if weatherType == "Cloudy":
+      while size(weatherArray) < 18:
+         push(weatherArray, make_entity({
+            pos: xy(random(-50, playSize.x + 50), random(-50, playSize.y + 50)),
+            vel: xy(random(-0.25, 0.25), -random(0.05, 0.05)),
+            sprite: random_value(cloudSprite[0]),
+            spin: 0,
+            scale: xy(random_sign() * random(1, 3), random(0.75, 1.5)),
+            z: 20
+         }))
+         
+         
+enter
+────────────────────────────────────────────────────────────────────────
+++level
+powerupArray = []
+shotArray = []
+buildingArray = []
+weatherArray = []
+
+for snake in snakeArray:
+   moveToStartingPosition(snake)
+   snake.hasGun = false
+
+// No weather on the first two levels, to make it easier
+weatherType = if level > 1 and ξ < 20% then random_value(weatherNameArray) else ""
+locationName = if level == 0 then "Country" else random_value(locationNameArray)
+
+location = locationTable[locationName]
+
+spawnWeather()
+spawnBuildings()
+spawnPowerups()
+
+shadowColor = 85% location.background
+  
+levelDescription = concat(locationName, weatherType, waveType)
+
+if backgroundSound: stop_audio(backgroundSound)
+backgroundSound = play_sound(location.music, true)
+
+
+
+frame
+────────────────────────────────────────────────────────────────────────
+
+draw_previous_mode()
+
+// Pause for half a second on later levels
+const delay = if level == 0 then 0 else 30
+
+const t = max(mode_frames - delay, 0)
+
+// Spin out
+const k = t² / 200
+set_post_effects({scale: 1 + max(0, k - 2), angle: -k, background: #a})
+
+if mode_frames > 80:
+   if size(snakeArray) > 1 and level >= numLevels:
+      set_mode(GameOver) because "Multiplayer levels done"
+   else:
+      set_mode(LevelTitle) because "Animation end"

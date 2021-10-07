@@ -1,0 +1,185 @@
+<!doctype html><meta charset="UTF-8">
+<title>fontgen✜</title>
+<link rel="icon" type="image/png" sizes="64x64" href="../console/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../console/favicon-32x32.png">
+<link rel="shortcut icon" href="../console/favicon.ico">
+<script src="../console/quadplay-font.js" charset="UTF-8"></script>
+<style>
+  @font-face { font-family: quadplay; src: url(../console/Audiowide-Regular.ttf) }
+
+  body {
+    background: #302b2b;
+    color: #eee;
+    font-family: Arial;
+    padding: 25px;
+    text-align: justify;
+    line-height: 140%;
+  }
+  
+  input {
+     width:240px
+  }
+
+  table#font {
+     border-collapse: collapse;
+     table-layout: fixed;
+     border: 1px solid #080;
+     background: #000;
+     color: #fff;
+     font-smooth: never;
+     -webkit-font-smoothing: none;
+  }
+
+  table#font td {
+     border: none;
+     margin: 0;
+     padding: 0;
+     overflow: hidden
+     width: 3.125%;
+  }
+
+  h1 {
+     font-family: quadplay;
+     text-align: center;
+     margin-bottom: 30px;
+     color: #fff;
+  }
+</style>
+<body>
+  <h1>fontgen✜</h1>
+  <center style="font-family: quadplay, Arial; margin-top: -20px; margin-bottom: 25px">a <a href="https://github.com/morgan3d/quadplay">quadplay✜</a> tool</center>
+
+
+  Use this tool to generate bitmap font templates. Screen-capture the result and draw
+  over them in your pixel art program to create new quadplay fonts.
+
+  <br/>
+  <br/>
+  
+  <table style="width: 500px; border-collapse: collapse">
+    <tr><td>Font Name:</td><td align=right><input type="text" id="fontname" onchange="onChange()" onclick="onChange()" onkeyup="onChange()" value="Arial"></td><td></td></tr>
+    <tr><td>Font Size:</td><td align=right><input type="number" id="fontsize" onchange="onChange()" onclick="onChange()" onkeyup="onChange()" value="10"></td><td>px</td></tr>
+    <tr><td>Tile Width:</td><td align=right><input type="number" id="charwidth" onchange="onChange()" onclick="onChange()" onkeyup="onChange()" value="9"></td><td>px</td></tr>
+    <tr><td>Tile Height:</td><td align=right><input type="number" id="charheight" onchange="onChange()" onclick="onChange()" onkeyup="onChange()" value="12"></td><td>px</td></tr>
+  </table>
+  <br/>
+
+
+  <script>
+let s = fontChars;
+
+function big(c) {
+    return '<span style="font-size:138%;position:relative;top:0.075em">' + c + '</span>';
+}
+
+function skey(c) {
+    return '<span style="display:inline-block;text-align:center;background:#fff;color:#000;width:1em;font-size:70%;font-weight:bold">' + c + '</span>';
+}
+
+function button(c) {
+    return '<span style="background:#fff;color:#000;padding-left:0.25em;padding-right:0.25em;border-radius:0.7em">' + c + '</span>';
+}
+
+function sbutton(c) {
+    return '<span style="background:#fff;color:#000;font-size:75%;font-weight:bold;padding-left:0.25em;padding-right:0.25em;border-radius:0.7em">' + c + '</span>';
+}
+
+const substitution = {
+    'Ⓦ':big('🆆'),
+    'Ⓐ':big('🅰'),
+    'Ⓢ':big('🆂'),
+    'Ⓓ':big('🅳'),
+    'Ⓘ':big('🅸'),
+    'Ⓙ':big('🅹'),
+    'Ⓚ':big('🅺'),
+    'Ⓛ':big('🅻'),
+    '⒧':'🅛',
+    '⒭':'🅡',
+    '①':big('➊'),
+    '②':big('➋'),
+    '③':big('➌'),
+    '④':big('➍'),
+    '⑦':big('➐'),
+    '⑧':big('➑'),
+    '⑨':big('➒'),
+    '⓪':'⓿',
+    '⬙':sbutton('/'),
+    '⬗':sbutton("'"),
+    '⬖':sbutton('.'),
+    '⬘':sbutton(';'),
+    'Ⓞ':sbutton('O'),
+    '⍍':sbutton('△'),
+    '▣':sbutton('◻'),
+    '⧉':sbutton('⧉'),
+    '☰':sbutton('☰'),
+    '⊖':sbutton('-'),
+    '⊕':sbutton('+'),
+    'ⓐ':button('a'),
+    'ⓑ':button('b'),
+    'ⓒ':button('c'),
+    'ⓓ':button('d'),
+    'ⓕ':button('f'),
+    'ⓖ':button('g'),
+    'ⓟ':button('p'),
+    'ⓠ':button('q'),
+    'ⓥ':button('v'),
+    'ⓧ':button('x'),
+    'ⓨ':button('y'),
+    'ⓛ':sbutton('sl'),
+    'ⓡ':sbutton('sr'),
+    '⍐':skey('↑'),
+    '⍇':skey('←'),
+    '⍗':skey('↓'),
+    '⍈':skey('→'),
+    '○':'<span style="font-size:130%">○</span>',
+    '●':'<span style="font-size:130%">●</span>'
+};    
+
+// The main grid of 1-wide characters
+document.write('<table id="font">');
+for (let y = 0; y < FONT_ROWS - 2; ++y) {
+  // Vertical alignment to control baseline:
+  document.write('<tr>');
+  for (let x = 0; x < FONT_COLS; ++x) {
+      // Print enclosed alphanumerics smaller
+      if ((s.charCodeAt(0) >= 0x2460) && (s.charCodeAt(0) <= 0x24FF)) {
+          document.write('<td style="font-size: 75%">');
+      } else {
+          document.write('<td>');
+      }
+      document.write((substitution[s[0]] ? substitution[s[0]] : s[0]) + '</td>');
+                      
+      s = s.substring(1);
+  }
+  s = s.substring(1);
+  document.write('</tr>');
+}
+
+// The final two special rows of 4-wide characters
+document.write('<tr>');
+for (let i = 0; i < fontSpecials.length; ++i) {
+    document.write('<td colspan=4><span style="font-size:70%;padding-left:0.25em;padding-right:0.25em;border-radius:0.5em;font-weight:bold;background:#fff; color:#000">' + fontSpecials[i] + '</span></td>');
+    if (i + 1 === FONT_COLS / 4) {
+        document.write('</tr><tr>');
+    }
+}
+document.write('</tr>');
+document.write('</table>');
+
+function onChange() {
+    const n = document.getElementById("fontname").value;
+    const f = document.getElementById("fontsize").value;
+    const w = parseInt(document.getElementById("charwidth").value || 0);
+    const h = parseInt(document.getElementById("charheight").value || 0);
+    const table = document.getElementById("font");
+    table.style.fontFamily = n;
+    table.style.fontSize = f + 'px';
+    table.style.width =  (w * FONT_COLS) + 'px';
+    table.style.height = (h * FONT_ROWS) + 'px';
+    table.style.line_height = h + 'px';
+}
+
+onChange();
+</script>
+
+</body>

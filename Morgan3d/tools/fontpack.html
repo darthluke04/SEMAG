@@ -1,0 +1,319 @@
+<!doctype html><meta charset="UTF-8"><!-- -*- JavaScript -*- -->
+<title>fontpack✜</title>
+<link rel="icon" type="image/png" sizes="64x64" href="../console/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../console/favicon-32x32.png">
+<link rel="shortcut icon" href="../console/favicon.ico">
+   
+<style>
+  @font-face { font-family: quadplay; src: url("../console/Audiowide-Regular.ttf") }
+
+  h1 {
+     font-family:   quadplay;
+     text-align:    center;
+     margin-bottom: 30px;
+     color:         #fff;
+  }
+
+  a {
+     color: #e61b9d !important;
+     text-decoration: none;
+  }
+  body {
+     background: #302b2b;
+     color: #eee;
+     font-family: Arial;
+     padding: 25px;
+     text-align: justify;
+     line-height: 140%;
+  }
+
+  div.image {
+     position: relative;
+     background: #666;
+     border: 2px solid #000;
+     width: 516px;
+     height: 256px;
+     text-align: center
+  }
+
+  img {
+     image-rendering: -moz-crisp-edges;
+     image-rendering: pixelated;
+  }
+
+  div#json, div#data {
+     font: monospace;
+     white-space: pre;
+     text-align: left;
+     margin-left:auto;
+     margin-right:auto;
+  }
+
+  div#data {
+     font-size: 80%;
+     column-count: 5;
+  }
+
+  code {
+     font-size: 120%;
+  }
+
+  span.letter, span.special {
+     display: inline-block;
+     font-family: serif;
+     min-width: 12px;
+     text-align: center;
+  }
+
+  span.special {
+      font-size: 75%;  
+  }
+</style>
+<script src="../console/quadplay-load.js"></script>
+<script src="../console/quadplay-font.js"></script>
+<script>
+    function onDrop(event) {
+        // Prevent the browser from opening the file
+        event.preventDefault();
+        if (event.dataTransfer.items) {
+            // Use DataTransferItemList interface to access the file(s)
+            for (var i = 0; i < event.dataTransfer.items.length; i++) {
+                // If dropped items aren't files, reject them
+                if (event.dataTransfer.items[i].kind === 'file') {
+                    processDrop(event.dataTransfer.items[i].getAsFile());
+                }
+            }
+        } else {
+            // Use DataTransfer interface to access the file(s)
+            for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+                processDrop(event.dataTransfer.files[i]);
+            }
+        } 
+    
+        // Pass event to removeDragData for cleanup
+        removeDragData(event)
+    }
+
+    function removeDragData(event) {
+        if (event.dataTransfer.items) {
+            // Use DataTransferItemList interface to remove the drag data
+            event.dataTransfer.items.clear();
+        } else {
+            // Use DataTransfer interface to remove the drag data
+            event.dataTransfer.clearData();
+        }
+    }
+                                
+    function processDrop(file) {
+        // Do not use a regex here; it will not give the
+        // correct result
+        if (! file.type.match('^image\/.*')) return;
+        const filename = file.name.replace(/\.[^.]+$/, '').replace(/-\d+$/, '');
+        
+        var reader = new FileReader();
+        reader.addEventListener('loadend', function() {
+            var sourceImage = new Image();
+            sourceImage.crossOrigin = 'anonymous';
+            sourceImage.src = reader.result;
+            sourceImage.onload = function () {
+                console.log("loaded " + file.name);
+
+                let tileWidth  = Math.round(sourceImage.width / FONT_COLS);
+                let tileHeight = Math.round(sourceImage.height / FONT_ROWS);
+
+                let font = {};
+                let borderSize = parseInt(document.getElementById('extraPadding').value), shadowSize = 0;
+                let baseline = Math.floor(tileHeight * 0.7);
+
+                let srcMask = getBinaryImageData(sourceImage);
+
+                let s = (tileHeight > 15) ? 2 : 1;
+                packFont(font, borderSize, shadowSize, baseline,
+                         {x:tileWidth, y:tileHeight},
+                         {x:s, y:2 * s}, srcMask);
+
+                if (font.$charHeight < 12) {
+                    font.spacing.y = 2;
+                    font.spacing.x = 1;
+                }
+                console.dir(font);
+                {
+                    let info = document.getElementById('data');
+                    let s = '';
+                    let maxWidth = -Infinity, maxWidthChar = '', maxHeight = -Infinity, maxHeightchar = '';
+                    for (const k in font.$bounds) {
+                        if (k !== '\t') {
+                            const special = fontSpecials[k];
+                            
+                            const b = font.$bounds[k];
+                            const w = b.x2 - b.x1 + 1;
+                            const h = b.y2 - b.y1 + 1;
+
+                            const effectiveWidth = w / (special ? 4 : 1);
+
+                            // Handle 4-wide special button prompt characters
+                            if (effectiveWidth > maxWidth) {
+                                maxWidth = effectiveWidth;
+                                maxWidthChar = k;
+                            }
+                            if (h > maxHeight) {
+                                maxHeight = h;
+                                maxHeightChar = k;
+                            }
+
+                            if (special) {
+                                s += `<span class="special">${special}</span>`;
+                            } else {
+                                s += `"<span class="letter">${k}</span>"`;
+                            }
+                            s += `: <span class="width${w}">${w}</span> × <span class="height${h}">${h}</span>\n`;
+                        }
+                    }
+                    
+                    {
+                        const b = font.$bounds[maxHeightChar];
+                        s = `Tallest: "<span class="letter">${maxHeightChar}</span>": ${b.x2 - b.x1 + 1} × <span class="height${maxHeight}">${maxHeight}</span>\n` + s;
+                    }
+                    {
+                        const b = font.$bounds[maxWidthChar];
+                        s = `Widest: "<span class="letter">${maxWidthChar}</span>": <span class="width${maxWidth}">${maxWidth}</span> × ${b.y2 - b.y1 + 1}\n` + s;
+                    }
+
+                    // Highlight the largest
+                    s += `<style>
+span.width${maxWidth} { background: #f99; color: #000; padding: 0 1px}
+span.height${maxHeight} { background: #ff4; padding: 0 1px; color: #000}
+</style>
+`;
+                    info.innerHTML = s;
+
+                    // Suggest size name as the minimum height of d, D, I, l. We use the MINIMUM
+                    // because sometimes letters have flourishes that go beyond the normal size.
+                    let pxSize = Infinity;
+                    {
+                        const candidates = 'dDIl';
+                        for (let i = 0; i < candidates.length; ++i) {
+                            const bounds = font.$bounds[candidates[i]];
+                            pxSize = Math.min(pxSize, bounds.y2 - bounds.y1 + 1);
+                        }
+                    }
+
+                    // Find the baseline as the highest bottom of certain characters
+                    {
+                        const candidates = 'ELZBabo';
+                        baseline = Infinity;
+                        for (let i = 0; i < candidates.length; ++i) {
+                            const bounds = font.$bounds[candidates[i]];
+                            baseline = Math.min(baseline, bounds.y2 - Math.floor(bounds.y2 / font.$charHeight) * font.$charHeight);
+                        }
+                    }
+                    console.assert(font.$data.height / FONT_ROWS === font.$charHeight);
+                    
+                    document.getElementById('pngfilename').innerHTML = filename + '-' + pxSize + '.png';
+                    document.getElementById('jsonfilename').innerHTML = filename + '-' + pxSize + '.font.json';
+                }
+
+                // Convert back to an image
+                let canvas = document.createElement('canvas');
+                canvas.width = font.$data.width;
+                canvas.height = font.$data.height;
+
+                let ctx = canvas.getContext('2d');
+                let destImageData = ctx.createImageData(font.$data.width, font.$data.height);
+                let packedData = font.$data.data;
+
+                for (let i = 0; i < packedData.length; ++i) {
+                    // Color
+                    if (packedData[i] & 1) {
+                        for (let j = i * 4; j < i * 4 + 3; ++j) {
+                            destImageData.data[j] = 0xff;
+                        }
+                    }
+                    
+                    // Alpha is always 100%
+                    destImageData.data[i * 4 + 3] = 0xff;
+                }
+                                
+                // Put the data back to create a data URL
+                ctx.putImageData(destImageData, 0, 0);
+                let destImage = new Image();
+                destImage.src = canvas.toDataURL();
+                destImage.onload = function () {
+                    // Show the input
+                    let sourceDisplay = document.getElementById('source');
+                    sourceDisplay.innerHTML = '';
+                    sourceDisplay.style.width = sourceImage.width + 'px';
+                    sourceDisplay.style.height = sourceImage.height + 'px';
+                    sourceDisplay.appendChild(sourceImage);
+                    
+                    // Show the output
+                    let destDisplay = document.getElementById('dest');
+                    destDisplay.innerHTML = '';
+                    destDisplay.style.width = destImage.width + 'px';
+                    destDisplay.style.height = destImage.height + 'px';
+                    destDisplay.appendChild(destImage);
+
+                    let json = document.getElementById('json');
+                    
+                    json.innerHTML = `{
+    "url":           "somefile.png",
+    "license":       "by somebody",
+    "char_size":      {"x": ${destImageData.width / FONT_COLS}, "y": ${destImageData.height / FONT_ROWS}},
+    "letter_spacing": {"x": ${font.spacing.x}, "y": ${font.spacing.y}},
+    "baseline":      ${baseline}
+}
+`;
+                };
+            };
+            
+            sourceImage.onerror = function () {
+                console.log("failed to load image " + file.name);
+            };
+        });
+    
+        reader.readAsDataURL(file);
+    }
+
+
+    function onDragOver(event) { event.preventDefault(); }
+</script>
+<body ondrop="onDrop(event)" ondragover="onDragOver(event)">
+    <h1>fontpack✜</h1>
+    <center style="font-family: quadplay, Arial; margin-top: -20px; margin-bottom: 25px">a <a href="https://github.com/morgan3d/quadplay">quadplay✜</a> tool</center>
+
+    <div style="margin: auto; max-width: 600px">
+      <p>
+        Drag quadplay✜ font PNG files with regular tiles onto this tool. It will
+        re-pack them tightly and produce the <code>.font.json</code> file.
+      </p>
+      <p>
+        <label for="padding">Extra Padding:</label>
+        <input type="number" id="extraPadding" min="0" max="8" value="0" width="64" style="font-size:14px"> px
+      </p>
+    </div>
+
+    <br/>
+  
+  <center>
+    <div id="source" class="image" ondrop="onDrop(event)" ondragover="onDragOver(event)">
+      <span style="color: #fff; position: absolute;  top: 50%;  left: 50%;  transform: translate(-50%, -50%);">Drop font PNG here</span>
+    </div>
+
+    <br/>
+    <code id="pngfilename">??.png</code> file:
+    <div id="dest" class="image">
+    </div>
+
+    <br/>
+    <code id="jsonfilename">??.font.json</code> file:
+    <div id="json" style="border: 1px solid #000">
+    </div>
+    <br/>
+    Per-character data (for debugging, not needed as part of the asset):
+    <div id="data">
+    </div>
+  </center>
+
+  <br/>
+  <br/>
+</body>

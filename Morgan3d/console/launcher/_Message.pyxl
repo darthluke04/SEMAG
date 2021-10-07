@@ -1,0 +1,33 @@
+$Message
+════════════════════════════════════════════════════════════════════════
+let onDone
+
+const fadeInFrames = 42
+const holdFrames = 110
+const fadeOutFrames = 42
+
+enter(callback)
+────────────────────────────────────────────────────────────────────────
+onDone = callback
+
+
+frame
+────────────────────────────────────────────────────────────────────────
+set_background(#0)
+
+let α = mode_frames
+let done = false
+
+if mode_frames < fadeInFrames:
+   α = (mode_frames + 1) / fadeInFrames
+else if mode_frames < fadeInFrames + holdFrames:
+   α = 1
+else if mode_frames < fadeInFrames + holdFrames + fadeOutFrames:
+   α = 1 - (mode_frames + 1 - fadeInFrames - holdFrames) / fadeOutFrames
+else:
+   done = true
+   
+draw_sprite({sprite: pauseMessageSprite, pos: ½ SCREEN_SIZE, opacity: α})
+
+if done or any_button_press():
+   onDone()

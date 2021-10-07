@@ -1,0 +1,56 @@
+init
+───────────────────────────────────────────────────────────
+// nothing 
+//
+// see accel_lib.pyxl for accel implementation and demo.pyxl for demo app
+// implementation
+// 
+// the TL;DR is that there is a box entity that gets moved around.  its 
+// accelerator gets initialized with:
+// box.x_accel = make_accelerator_from_profile("celeste")
+
+
+frame
+───────────────────────────────────────────────────────────
+
+// book keeping for the ui
+let last_vel = clone(box.vel)
+
+// actually do the acceleration!
+// if you're looking at integrating this into your game, this is the line to 
+// look at, the rest is updating UI data
+//---------------------------------------------------
+box.vel.x = accelerator_update(box.x_accel, joy.x)
+//---------------------------------------------------
+
+// tracking for the mblur case
+let last_p = clone(box.pos)
+
+draw_ui()
+
+// handle the integration of velocity to position
+entity_simulate(box)
+
+let next_p = clone(box.pos)
+
+// for cycling around the screen
+box.pos.x = loop(box.pos.x, SCREEN_SIZE.x)
+
+update_demo_ui(last_vel)
+
+// draw the "character"
+if DRAW_MBLUR:
+    // @TODO: make this wrap correctly
+    // @TODO: have more than 1 frame of MBLUR
+    draw_corner_rect(
+        last_p - box.size/2,
+        abs(next_p - last_p) + box.size,
+        PROFILE_COLOR_MAP[labels[profile_index]]
+    )
+else:
+    draw_rect(
+        box.pos,
+        box.size,
+        PROFILE_COLOR_MAP[labels[profile_index]]
+    )
+

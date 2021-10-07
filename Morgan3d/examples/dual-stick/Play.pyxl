@@ -1,0 +1,60 @@
+Play
+===========================================================
+
+let trackArray = []
+
+let tank = make_entity({
+   pos:    ½ SCREEN_SIZE,
+   angle:  0,
+   sprite: tankSprite[0][0]},
+   {turret: make_entity({
+        pos:                xy(0, 0),
+        sprite:             tankSprite[0][1],
+        orient_with_parent: false,
+        z_in_parent:        1
+   })})
+
+
+def wrapAngle(a):
+   return loop(a, -180°, +180°)
+
+
+def rotateToTarget(entity, target, rate):
+   const delta = wrapAngle(target - entity.angle)
+   if |delta| > ½ rate: entity.angle = wrapAngle(entity.angle + sign(delta) * rate)
+
+   
+   
+frame
+───────────────────────────────────────────────────────────
+
+// Turn the tank and turret
+rotateToTarget(tank, gamepad_array[0].angle, 1°)
+rotateToTarget(tank.turret, gamepad_array[1].angle, 5°)
+
+with pos, angle in tank:
+   const dir = xy(cos angle, rotation_sign() * sin angle)
+   pos =  loop(pos + SPEED * dir, xy(-32, -32), SCREEN_SIZE + 32)
+
+   const normal = perp(dir)
+   if mode_frames mod 8 == 0:
+      push(trackArray, pos + 10 normal)
+      push(trackArray, pos - 10 normal)
+      push(trackArray, pos + 11 normal - 9 dir)
+      push(trackArray, pos - 11 normal - 9 dir)
+      
+entity_update_children(tank)
+
+set_background(rgb(55%, 65%, 30%))
+
+draw_text(font, "Tank: "   + format_number(tank.angle, "degrees"), xy(20% SCREEN_SIZE.x, 0), #f, nil, #3, "left", "top")
+draw_text(font, "Turret: " + format_number(tank.turret.angle, "degrees"), xy(50% SCREEN_SIZE.x, 0), #f, nil, #3, "left", "top")
+
+draw_entity(tank)
+
+// Tracks
+for pos in trackArray: draw_point(pos, #794, -1)
+while size(trackArray) > 1024: 
+    // Remove a random value so that the tracks appear to fade
+    trackArray[random_integer(0, size(trackArray) - 1)] = last_value(trackArray)
+    pop(trackArray)

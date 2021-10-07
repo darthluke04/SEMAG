@@ -1,0 +1,99 @@
+Play
+════════════════════════════════════════════════════════════════════════
+
+const board = [
+    [∅, ∅, ∅], 
+    [∅, ∅, ∅],
+    [∅, ∅, ∅]]
+
+const player_array = [∅, ∅]
+
+// Index into player_array
+let turn
+    
+
+enter
+────────────────────────────────────────────────────────────────────────
+
+reset_board(board)
+
+player_array[0] = {sprite: shapes.X, color: X_COLOR, cursor: xy(1, 1), gamepad: gamepad_array[0], commit_sound: x_sound}
+player_array[1] = {sprite: shapes.ring, color: O_COLOR, cursor: xy(1, 1), gamepad: gamepad_array[1], commit_sound: o_sound}
+
+turn = 0
+
+set_background(BACKGROUND_COLOR)
+set_transform(½ SCREEN_SIZE)
+
+
+frame
+────────────────────────────────────────────────────────────────────────
+
+draw_board(board)
+
+// Current player
+const player = player_array[turn]
+
+// Mouse. Not available on all platforms
+const mouse = device_control("get_mouse_state")
+
+with commit_sound, cursor, color, gamepad in player:
+    for i < 3:
+        draw_rect(board_to_screen(cursor), xy(1, 1) * (BOX_SIDE - 4 - i), ∅, color)
+
+    // Show the controls
+    draw_text({
+        font: font,
+        text: replace("[^]\n[<]  [>]\n[v]\n(a)", gamepad.prompt),
+        x_align: "center",
+        pos: xy((½ SCREEN_SIZE.x - 40) * (2 turn - 1), -20),
+        color: color,
+        outline: BOX_OUTLINE
+    })
+    
+    // Move with gamepad
+    if gamepad.xx or gamepad.yy:
+        const old_cursor = cursor
+        cursor = clamp(cursor + xy(gamepad.xx, gamepad.yy), xy(0, 0), xy(2, 2))
+        play_sound(if equivalent(old_cursor, cursor) then bad_sound else move_sound, false, 80%)
+
+    let commit = gamepad.aa or gamepad.bb or gamepad.cc or gamepad.dd
+    
+    // Hover support for platforms with a mouse. See also touch.hover
+    // and cursor-9x9.sprite.json
+    if mouse.dx or mouse.dy:
+        const temp = screen_to_board(mouse.xy)
+        device_control("set_mouse_cursor", "crosshair") 
+        if in_bounds(temp):
+            cursor = temp
+            if board[cursor.x][cursor.y] == ∅:
+                // Selectable
+                device_control("set_mouse_cursor", "pointer")                
+
+    // Touch screen support
+    if touch.aa:
+        const temp = screen_to_board(touch.xy)
+        if in_bounds(temp):
+            cursor = temp
+            commit = true
+            // Move the *other* player's cursor to match
+            player_array[1 - turn].cursor = xy(temp)
+        else:
+            play_sound(bad_sound)
+
+    // Commit move
+    if commit:
+        if board[cursor.x][cursor.y] == ∅:
+            board[cursor.x][cursor.y] = player
+            
+            // Look for a win
+            if three_in_a_row(board):
+                set_mode(GameOver, turn, board) because "Three in a row"
+            
+            turn = 1 - turn
+            play_sound(commit_sound)
+            device_control("set_mouse_cursor", "crosshair") 
+        else:
+            play_sound(bad_sound)
+
+    

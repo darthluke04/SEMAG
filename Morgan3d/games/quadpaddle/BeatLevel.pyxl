@@ -1,0 +1,27 @@
+BeatLevel
+════════════════════════════════════════════════════════════════════════════
+
+enter
+────────────────────────────────────────────────────────────────────────────
+play_sound(beatLevelSound)
+
+
+frame
+────────────────────────────────────────────────────────────────────────────
+
+draw_previous_mode()
+draw_scoreboard()
+
+const bonus = min(floor(4 time_left / LEVEL_TIME), size(wordSprite[0]) - 1)
+
+const angle = max(60 - mode_frames, 0)² * 0.25deg
+const sprite = wordSprite[0][bonus]
+const center = ½ (SCREEN_SIZE - 1)
+
+if mode_frames < 180:
+   draw_sprite(sprite, center, angle, ∅, ∅, 8)
+else:
+   play_sound(wordExplodeSound)
+   entity_to_particles_hit(make_entity({pos: center, sprite:sprite, z:8}), center, xy(0, 0), 0.2, 1.5, 50)
+   create_level(level + 1)
+   pop_mode() because "3 seconds"

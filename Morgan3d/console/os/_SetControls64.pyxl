@@ -1,0 +1,100 @@
+$SetControls64
+════════════════════════════════════════════════════════════════════════
+// Choose the active player
+
+const window_background_color = #135
+const window_border_color     = #fff
+const text_color              = #fff
+const text_shadow_color       = #0006
+const prompt_color            = #4DF
+const selected_color          = #f
+const unselected_color        = #b
+
+const open_frames             = 8
+
+const font = $font5
+const line_height = round(110% font.line_height) + 1
+
+let choiceArray = ["P1", "P2", "P3", "P4", "Done"]
+let choiceIndex
+
+let old_transform
+let old_clip
+let old_post_effects
+let old_background
+
+
+enter
+────────────────────────────────────────────────────────────────────────
+choiceIndex = 0
+old_background = get_background()
+old_transform = get_transform()
+old_clip = get_clip()
+old_post_effects = get_post_effects()
+reset_post_effects()
+
+
+leave
+────────────────────────────────────────────────────────────────────────
+
+set_transform(old_transform)
+set_clip(old_clip)
+set_post_effects(old_post_effects)
+set_background(old_background)
+
+
+frame
+────────────────────────────────────────────────────────────────────────
+
+draw_previous_mode()
+// Force the clipping range beyond what the API normally allows
+$clipZ2 = 2049
+set_transform(xy(0, 0), xy(1, 1), 2048.6, 1)
+
+const windowSize = round(xy(26, 56) * clamp((mode_frames + 1) / open_frames, 0%, 100%))
+draw_rect(½ SCREEN_SIZE, windowSize, window_background_color, window_border_color)
+
+if mode_frames > open_frames:
+   // Process input. Let any controller
+   // manipulate the result, since we might
+   // have gotten to this screen using a different
+   // controller than the active one.
+   for control in gamepad_array:
+      if control.qq or control.$pp:
+         // Do NOT use "bb", which maps to enter on the keyboard
+         // and may make players think they are executing a command
+         play_sound($cancelUISound)
+         pop_mode()
+      else if control.aa:
+         play_sound($acceptUISound)
+         if choiceIndex == size(choiceArray) - 1:
+            pop_mode()
+         else:
+            push_mode($SetControls, choiceIndex)
+      else if control.yy:
+         const prev = choiceIndex
+         choiceIndex = clamp(choiceIndex + control.yy, 0, size(choiceArray) - 1)
+         play_sound(if prev == choiceIndex then $denyUISound else $moveUISound)
+
+   // Draw options
+   let y = 13
+   for i < size(choiceArray):
+      const active      = choiceIndex == i
+      const bright      = (1 + cos(mode_frames / 9)) / 2
+      const color       = if active then lerp(prompt_color, #fff, 50% bright) else unselected_color
+      const outline     = if active then rgba(1,1,1, 25% bright) else nil
+      const yOffset     = if active then -1 else 0
+      const shadow      = if active then 50% text_shadow_color else text_shadow_color
+      
+      const x           = 27
+      const text        = choiceArray[i]
+      draw_text(font, text, xy(x, y + 1), shadow, nil, nil, "left", "center")
+      draw_text(font, text, xy(x, y + yOffset), color, nil, outline, "left", "center")
+   
+      if active:
+         draw_text(font, "✜", xy(x - 40% line_height + 1, y + 1), shadow, nil, nil, "right", "center")
+         draw_text(font, "✜", xy(x - 40% line_height + 1, y + yOffset), color, nil, outline, "right", "center")
+         
+      y += line_height
+
+

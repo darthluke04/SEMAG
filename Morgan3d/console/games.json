@@ -1,0 +1,277 @@
+{
+    "mine": [],
+    "examples": [
+        {
+            "url": "quad://examples/animation/",
+            "title": "Animation Example",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/boids/",
+            "title": "Boids Example",
+            "description": "Implementation of Craig Reynolds's flocking algorithm"
+        },
+        {
+            "url": "quad://examples/camera_shake/",
+            "title": "Camera Shake",
+            "description": "Example of tunable full-screen camera shake"
+        },
+        {
+            "url": "quad://examples/cards/",
+            "title": "Cards",
+            "description": "Example of using a standard playing card deck"
+        },
+        {
+            "url": "quad://examples/change_res/",
+            "title": "Change Resolution",
+            "description": "Changing screen resolution at runtime"
+        },
+        {
+            "url": "quad://examples/clouds/",
+            "title": "Clouds",
+            "description": "Example of noise functions and draw_point"
+        },
+        {
+            "url": "quad://examples/dark_drive/",
+            "title": "A Dark Drive",
+            "description": "A moody drive on a dark rainy night."
+        },
+        {
+            "url": "quad://examples/dual-stick/",
+            "title": "Dual D-Pad Example",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/dynamic_accel/accel_demo.game.json",
+            "title": "Dynamic Acceleration Library Demo",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/entity/",
+            "title": "Entity Example",
+            "description": "Examples of different ways of drawing and simulating entities."
+        },
+        {
+            "url": "quad://examples/fluid/",
+            "title": "Fluid Example",
+            "description": "Cellular automata fluid simulation."
+        },
+        {
+            "url": "quad://examples/fontpreview/",
+            "title": "Font Preview",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/gridmove/",
+            "title": "Grid Movement",
+            "description": "PAC-MAN style movement with smooth interpolation and anticipatory turns"
+        },
+        {
+            "url": "quad://examples/helloworld/",
+            "title": "Hello World",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/highscore/",
+            "title": "High Score Example",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/input/",
+            "title": "Input",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/kart/",
+            "title": "Kart",
+            "description": "Perspective textured ground plane example"
+        },
+        {
+            "url": "quad://examples/lift_team/",
+            "title": "Lift Team Example",
+            "description": "Physics example of a player helicoper that can lift another player's mech."
+        },
+        {
+            "url": "quad://examples/perceptual_color/",
+            "title": "Perceptual Color",
+            "description": "Shows the difference between perceptual_lerp_color() and lerp()."
+        },
+        {
+            "url": "quad://examples/physics/",
+            "title": "Physics Example",
+            "description": "Using the built-in quadplay physics support for vehicles, characters, switches, springs, and moving platforms."
+        },
+        {
+            "url": "quad://examples/piano/",
+            "title": "Piano",
+            "description": "Example of play_sound() and pitch."
+        },
+        {
+            "url": "quad://examples/planetgen/",
+            "title": "Planet Generator",
+            "description": "Random planet generator with moons, atmosphere, and rings"
+        },
+        {
+            "url": "quad://examples/private_view/",
+            "title": "Private Views",
+            "description": "Example of using private views for online multiplayer"
+        },
+        {
+            "url": "quad://examples/robot/",
+            "title": "Robot Example",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/roguelike/",
+            "title": "Roguelike Example",
+            "description": "Sample roguelike game setup"
+        },
+        {
+            "url": "quad://examples/rpg/",
+            "title": "RPG Demo",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/sequence_demo/",
+            "title": "Sequence Demo",
+            "description": "Demo of using sequence()"
+        },
+        {
+            "url": "quad://examples/speedstreet/",
+            "title": "Speed Street",
+            "description": "How fast can you go? Tear through the road course pulling tricks off jumps and fighting to be the leader of the pack."
+        },
+        {
+            "url": "quad://examples/spritestack/",
+            "title": "Spritestack",
+            "description": "Little engine for Grand Theft Auto 2.5D rendering and physics of a 2D game using sprite stacking and camera perspective."
+        },
+        {
+            "url": "quad://examples/sproing/",
+            "title": "Squash and Stretch Example",
+            "description": "Asymmetric sprite scaling for animation of single sprites"
+        },
+        {
+            "url": "quad://examples/starter/",
+            "title": "Starter Example",
+            "description": "Description of your game in about 100 characters."
+        },
+        {
+            "url": "quad://examples/text/",
+            "title": "Text Example",
+            "description": ""
+        },
+        {
+            "url": "quad://examples/tic_tac_toe/",
+            "title": "Tic Tac Toe",
+            "description": "Example of supporting gamepad, touch, and mouse (hover) input on a grid and turn-based play."
+        },
+        {
+            "url": "quad://examples/touch/",
+            "title": "Touch Example",
+            "description": "Shows how to use the touch input"
+        },
+        {
+            "url": "quad://examples/twin_analog/",
+            "title": "Twin Analog",
+            "description": "Example of using device_control() to access raw analog sticks"
+        },
+        {
+            "url": "quad://examples/vaporwave/",
+            "title": "Vaporwave Demo",
+            "description": "Example of pseudo-3D effects and pre-rendered 3D sprites."
+        },
+        {
+            "url": "quad://examples/vehicles/",
+            "title": "Vehicles",
+            "description": "Example of vehicle controls"
+        },
+        {
+            "url": "quad://examples/warlock3D/",
+            "title": "Warlock 3D",
+            "description": "DOOM/Heretic/Wizardry style first person view with d-pad, dual d-pad, dual analog, and mouselook controls"
+        },
+        {
+            "url": "quad://examples/word_game/",
+            "title": "word_game",
+            "description": "A game about words"
+        },
+        {
+            "url": "quad://examples/zcar/",
+            "title": "Z-Car",
+            "description": "Example of simple 3D wireframe effect."
+        },
+        {
+            "url": "quad://examples/zoom/",
+            "title": "Zoom 3D",
+            "description": "Using 3D perspective projection to move the camera in and out."
+        },
+        {
+            "url": "quad://examples/zoom2D/",
+            "title": "Zoom 2D",
+            "description": "Using 2D zoom to move the camera in and out."
+        }
+    ],
+    "builtins": [
+        {
+            "url": "quad://games/across_the_lake/",
+            "title": "Across the Lake",
+            "description": "You are a stone skipping across a lake. One-button endless skipper."
+        },
+        {
+            "url": "quad://games/beat_the_gobblins/",
+            "title": "Beat The Gobblins",
+            "description": "The evil Wizzard has trapped you on top of their tower and summoned hordes of angry Bombgobblins. Intense score chasing action. Good luck!"
+        },
+        {
+            "url": "quad://games/beyond_control/",
+            "title": "Beyond Control",
+            "description": "Program your broken robots to race through the ruins."
+        },
+        {
+            "url": "quad://games/doublesdepon/",
+            "title": "Doubles de Pon",
+            "description": "Swapping puzzle game"
+        },
+        {
+            "url": "quad://games/duality/",
+            "title": "Duality",
+            "description": "Dual-space duel, where each player is in the negative space of the other."
+        },
+        {
+            "url": "quad://games/friendly_fishing/",
+            "title": "Friendly Fishing",
+            "description": "Join your friends for a relaxing afternoon of fishing and you just might top the lake records."
+        },
+        {
+            "url": "quad://games/hexflipper/",
+            "title": "HexFlipper",
+            "description": "A trippy turn-based territory-claiming game for 1-4 players"
+        },
+        {
+            "url": "quad://games/icetime/",
+            "title": "Ice Time",
+            "description": "2 vs. 2 ice hockey with teams, player stats., faceoffs, passing\u2026and a Zamboni."
+        },
+        {
+            "url": "quad://games/quadpaddle/",
+            "title": "quadpaddle",
+            "description": "Blast bricks as a team from all four sides, grabbing powerups and racking up points."
+        },
+        {
+            "url": "quad://games/rescue_roguelike/",
+            "title": "Rescue Roguelike",
+            "description": "Turn-based tactical adventure"
+        },
+        {
+            "url": "quad://games/rps/",
+            "title": "R.P.S.",
+            "description": "Rock-paper-scissors battle royale."
+        },
+        {
+            "url": "quad://games/serpitron/",
+            "title": "Serpitron",
+            "description": "Grow your hungry serpent without crashing into obstacles or yourself. With rats, shotguns, blizzards, cities, pyramids..."
+        }
+    ]
+}

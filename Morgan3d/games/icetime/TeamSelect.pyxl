@@ -1,0 +1,100 @@
+TeamSelect
+═══════════════════════════════════════════════════════════════════════════════
+
+let teamStats
+
+const infoColor = #689
+
+def drawSide(teamIndex):
+   const team = teamArray[teamIndex]
+   const width = ½ SCREEN_SIZE.x
+   const x = teamIndex * width
+   draw_text({font: scoreFont, text:team.name, pos:xy(x + ½ width + 5, 8), color:team.labelColor, outline:#fff5, x_align:"center"})
+   // Team logo
+   draw_sprite(team.spriteSheet[4][0], xy(x + ½ width - 10, 6))
+
+   const stats = teamStats[team.name]
+   draw_text({font: tinyFont, text:"" + stats.win + "∙" + stats.lose + "∙" + stats.draw, pos:xy(x + ½ width, 15), color:infoColor, x_align:"center"})
+
+   let allAI = true
+   for i < 2:
+      const p = 2 teamIndex + i
+      let y = 26 + 43i
+      let label = "AI"
+      if not controlPadArray[p].isAI: label = "P" + (1 + controlPadArray[p].index); allAI = false
+      draw_text({font: tinyFont, text: label, pos: xy(x + 1, y), color:infoColor, y_align: "baseline"})
+
+      // Player portrait
+      const player = team.roster[i]
+      draw_text({font: scoreFont, text: player.name, pos: xy(x + 15, y), color:infoColor, y_align: "baseline"})
+      draw_corner_rect(xy(x + 15, y + 3), xy(30, 28), #cde, infoColor)
+      set_clip(xy(x + 16, y + 4), xy(28, 26))
+      for h < 2:
+         for k < 2:
+            draw_sprite({sprite: team.spriteSheet[player.spriteIndex + h][2 + k], pos: xy(x + 18 + 19h, y + 9 + 16k)})
+      reset_clip()
+
+      // Player stats
+      y += 7
+      y += draw_text({font: tinyFont, text: player.mass + " kg  " + format_number(player.acceleration * 1.7 / 0.06, "0.0") + " m", color: infoColor, pos:xy(x + 47, y)}).size.y
+      y += draw_text({font: tinyFont, text: format_number(29.5 player.maxSpeed + player.acceleration / 0.06, " 0") + " kph", color: infoColor, pos:xy(x + 47, y)}).size.y
+
+   if allAI:
+      team.ready = true
+   else:
+      // Show the controls
+      const y = 109
+      if team.ready:
+         draw_text({font:scoreFont, text:"ⓑChange", pos:xy(x + 2, y), color:#0, shadow:#0242})
+         draw_text({font:scoreFont, text:"Ready!", pos:xy(x + 66, y), color:infoColor})
+         for p < 2: if controlPadArray[2 teamIndex + p].bb: team.ready = false
+            
+      else:
+         draw_text({font: scoreFont, text:"←", pos:xy(x + ½ width - 25, 12), color:#0, x_align:"center", shadow:#0242})
+         draw_text({font: scoreFont, text:"→", pos:xy(x + ½ width + 25, 12), color:#0, x_align:"center", shadow:#0242})
+      
+         draw_text({font:scoreFont, text:"ⓑQuit", pos:xy(x +  2, y), color:#0, shadow:#0242})
+         draw_text({font:scoreFont, text:"↑Swap", pos:xy(x + 33, y), color:#0, shadow:#0242})
+         draw_text({font:scoreFont, text:"ⓐPlay", pos:xy(x + 68, y), color:#0, shadow:#0242})
+
+         for p < 2:
+            const control = controlPadArray[2 teamIndex + p]
+            // Swap
+            if control.yy: const temp = team.roster[0]; team.roster[0] = team.roster[1]; team.roster[1] = temp
+            if control.bb: set_mode(Title) because "Press ⓑ"
+            if control.aa: team.ready = true
+            if control.xx:
+               const otherIndex = 1 - teamIndex;
+               let nextLeagueIndex = loop(team.leagueIndex + control.xx, size(league))
+               if nextLeagueIndex == teamArray[otherIndex].leagueIndex:
+                  if controlPadArray[2 otherIndex].isAI and controlPadArray[2 otherIndex + 1].isAI:
+                     // The other team is all AI. Make *them* switch
+                     teamArray[otherIndex] = createRandomDifferentTeam(league[nextLeagueIndex])
+                  else:
+                     // This team is in use. Make *us* switch to another index
+                     nextLeagueIndex = loop(nextLeagueIndex + control.xx, size(league))
+               teamArray[teamIndex] = clone(league[nextLeagueIndex])
+      
+enter
+───────────────────────────────────────────────────────────────────────────────
+
+teamStats = load_local("teamStats") or {}
+// Ensure stats for all teams
+for team in league: if not teamStats[team.name]: teamStats[team.name] = {win:random_integer(3), draw:random_integer(1), lose:random_integer(3)}
+
+for i < 2: teamArray[i].ready = false
+
+      
+frame
+───────────────────────────────────────────────────────────────────────────────
+set_background(#d)
+reset_transform()
+for i < 2:
+   draw_sprite(backgroundSprite, xy(SCREEN_SIZE.x / 2, ((mode_frames / 1) mod SCREEN_SIZE.y) + (i - 0.5) * SCREEN_SIZE.y))
+
+draw_line(xy(½ SCREEN_SIZE.x - 1, 0), xy(½ SCREEN_SIZE.x - 1, SCREEN_SIZE.y), #f)
+for i < 2: drawSide(i)
+
+if teamArray[0].ready and teamArray[1].ready:
+   createGame()
+   set_mode(Faceoff) because "Both Ready"

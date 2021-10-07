@@ -1,0 +1,45 @@
+SingleGameOver
+════════════════════════════════════════════════════════════════════════
+
+
+enter
+────────────────────────────────────────────────────────────────────────
+reset_clip()
+reset_transform()
+reset_post_effects()
+
+if backgroundSound: stop_audio(backgroundSound)
+backgroundSound = play_sound(titleMusic, true)
+
+
+frame
+────────────────────────────────────────────────────────────────────────
+const snake = snakeArray[0]
+set_background(#a)
+
+draw_text({font: largeFont, text: "FINAL SCORE", pos: xy(SCREEN_SIZE.x / 2, 30),
+          color: #f, shadow: #0004, x_align: "center", y_align: "center"})
+
+const pos = SCREEN_SIZE / 2
+draw_text({font: largeFont, text: format_number(snake.score, "commas"),
+          pos: pos, color: #fd0, outline: #f, shadow: #0004, x_align: "center", y_align: "center"})
+
+// Draw snake
+let θ = mode_frames / 40
+const r = lerp(xy(50, 50), xy(120, 70), clamp(sqrt(snake.score / 2000000), 0, 1))
+draw_sprite(snake.tailSprite, pos + r * xy(cos θ, sin θ), 270° - θ)
+θ += 2.5°
+const N = 100
+for i < N:
+   const bodyPos = pos + r * xy(cos θ, sin θ)
+   draw_sprite(snake.bodySprite, bodyPos)
+   // Shadow
+   draw_corner_rect(bodyPos + xy(-2, 3), xy(4, 2), #9, ∅, -1)
+   θ += 2.5°
+         
+draw_sprite(snake.headSprite, pos + r * xy(cos θ, sin θ), 270° - θ)
+
+
+if mode_frames > 120 and any_button_press():
+   set_mode(Title) because "any_button_press()"
+   

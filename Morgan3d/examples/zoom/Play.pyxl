@@ -1,0 +1,55 @@
+Play
+════════════════════════════════════════════════════════════════════════
+
+const POINT_GRID_SIZE = xy(50, 50)
+
+const POINTS = []
+for x < POINT_GRID_SIZE.x:
+    for y < POINT_GRID_SIZE.y:
+        const z = noise(3, x / 15, y / 15)
+        push(POINTS, {
+                pos: SPACING * xyz(
+                    xy(x, y) - (POINT_GRID_SIZE - 1) / 2,
+                    z / 3),
+                sprite: shapes_sprite.star4,
+                override_color: POINT_COLOR * clamp(1.2 z + 0.5, 5%, 100%),
+                name: "POINT_" + x + "_" + y,
+                grid: xy(x, y)})
+
+
+def perspective_zoom(cs_z):
+    const clip_z = 20
+    return clip_z / (clip_z - cs_z)
+
+
+const CAMERA = {
+        pos: xyz(0, 0, 10),
+        angle: 0,
+        zoom: perspective_zoom
+}
+
+
+frame
+────────────────────────────────────────────────────────────────────────
+
+// Lower right text
+draw_text(font, "CAMERA.pos: xyz(" + 
+    format_number(CAMERA.pos.x, "0") + ", " + 
+    format_number(CAMERA.pos.y, "0") + ", " + 
+    format_number(CAMERA.pos.z, "0") + ")", xyz(SCREEN_SIZE - 10, 0), ACCENT_COLOR, nil, OUTLINE_COLOR, "right", "bottom")
+
+preserving_transform:
+    // Center indicator
+    set_transform(SCREEN_SIZE / 2)
+    draw_disk(xyz(0, 0, 0), 10, nil, ACCENT_COLOR)
+    draw_disk(xyz(0, 0, 0), 3, ACCENT_COLOR, OUTLINE_COLOR)
+    draw_text(font, "screen center", xyz(0, 12, 0), ACCENT_COLOR, nil, OUTLINE_COLOR, "center", "top")
+    
+    CAMERA.pos.x = clamp(CAMERA.pos.x + 5 gamepad_array[0].x, -1000, 1000)
+    CAMERA.pos.z = clamp(CAMERA.pos.z + gamepad_array[0].y, 0, 500)
+
+    set_camera(CAMERA)
+
+    for point in POINTS:
+        draw_point(point.pos, point.override_color)
+        draw_sprite(point)
