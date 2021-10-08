@@ -23,6 +23,7 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
+# <p align="center">FYI I do not own these games</p>
 
 <!-- PROJECT LOGO -->
 <br />
