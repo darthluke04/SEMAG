@@ -107,6 +107,7 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 <!-- COMMENTS -->
 ### Important
 
+***These games are not owned by me.*** <br>
 ***Some games will not work if you do not have the packages installed.***
 ### Downloading
 
