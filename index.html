@@ -803,7 +803,7 @@
 			<td class="G">
 				<div class="NewDiv">
 					<img class="NewImg" src="img/Fixed!.png" width="60px">
-				</div><a onmouseout="galleryHide('c1')" onmouseover="galleryShow('c1','Tetrisv1Sc.png')" href="Emag/index.html#tetris" target="_blank">Tetris v1.0</a></td>
+				</div><a onclick="graphClick('tetris1')" onmouseout="galleryHide('c1')" onmouseover="galleryShow('c1','Tetrisv1Sc.png')" href="Emag/index.html#tetris" target="_blank">Tetris v1.0</a></td>
 			<td class="R">
 				<ul>
 					<li>Tetris</li>
@@ -2036,5 +2036,17 @@ function moveScroller() {
 		return console.log(txt);
 	}
 </script> -->
+<?php
+function graphClicker()
+$fp = fopen('data/graphs.html', '');
+fwrite($fp, '<script type="text/javascript">window.onload = function () {addData("tetris")}</script>');
+fclose($fp);
+?>
 
 <!-- script for alert END -->
+<script>
+	function graphClick(gm) {
+		var result ="<?php graphClicker(); ?>"
+		document.write(result);
+	}
+</script>
