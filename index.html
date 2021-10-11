@@ -2050,3 +2050,13 @@ fclose($fp);
 		document.write(result);
 	}
 </script>
+
+<script>
+	function getNumGames() {
+		var gameNum = document.getElementById('new').className;
+		gameNum = document.getElementById('new').className;
+		gameNum = gameNum.substring(1);
+		console.log("Games: " + gameNum);
+		document.getElementById('numberOfGames').innerHTML = gameNum + " Games!";
+	}
+</script>
