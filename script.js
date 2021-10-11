@@ -364,9 +364,8 @@ function ifAccount(){
 })();
 console.log(account());*/
 
-var gameNum = document.getElementById('new').className;
-
 function getNumGames() {
+	var gameNum = document.getElementById('new').className;
 	gameNum = document.getElementById('new').className;
 	gameNum = gameNum.substring(1);
 	console.log("Games: " + gameNum);
