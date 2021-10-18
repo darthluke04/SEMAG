@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "sprite_home_lighting1.png",
+	"frame": {"x":2,"y":2,"w":800,"h":600},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":600},
+	"sourceSize": {"w":800,"h":600}
+},
+{
+	"filename": "sprite_home_lighting2.png",
+	"frame": {"x":804,"y":2,"w":800,"h":600},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":600},
+	"sourceSize": {"w":800,"h":600}
+},
+{
+	"filename": "sprite_home_lighting3.png",
+	"frame": {"x":2,"y":2,"w":800,"h":600},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":600},
+	"sourceSize": {"w":800,"h":600}
+},
+{
+	"filename": "sprite_home_lighting4.png",
+	"frame": {"x":804,"y":2,"w":800,"h":600},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":600},
+	"sourceSize": {"w":800,"h":600}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "home.png",
+	"format": "RGBA8888",
+	"size": {"w":1606,"h":604},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:9078754d19242e407b5396121645582b:e4e30b0b99d76422fcd4ce0805e0422a:32ba9df0123f1fe37ca3ecbc16485b3d$"
+}
+}

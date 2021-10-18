@@ -1,0 +1,44 @@
+{"frames": {
+
+"dummyEaten1.png":
+{
+	"frame": {"x":2,"y":2,"w":247,"h":220},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":247,"h":220},
+	"sourceSize": {"w":320,"h":220}
+},
+"dummyEaten2.png":
+{
+	"frame": {"x":251,"y":2,"w":247,"h":210},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":10,"w":247,"h":210},
+	"sourceSize": {"w":320,"h":220}
+},
+"dummyEaten3.png":
+{
+	"frame": {"x":251,"y":2,"w":247,"h":210},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":10,"w":247,"h":210},
+	"sourceSize": {"w":320,"h":220}
+},
+"dummyEaten4.png":
+{
+	"frame": {"x":251,"y":2,"w":247,"h":210},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":10,"w":247,"h":210},
+	"sourceSize": {"w":320,"h":220}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "dummyEaten.png",
+	"format": "RGBA8888",
+	"size": {"w":500,"h":224},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:39d21727809a926f1616b0d519855983:d4e1e6aff2b8610c2ef11e16fa6cd48f:21c4bf02a8803ac5bdd766123f14e131$"
+}
+}

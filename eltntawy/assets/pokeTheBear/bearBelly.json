@@ -1,0 +1,36 @@
+{"frames": {
+
+"bearBelly1.png":
+{
+	"frame": {"x":2,"y":2,"w":200,"h":450},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":450},
+	"sourceSize": {"w":200,"h":450}
+},
+"bearBelly2.png":
+{
+	"frame": {"x":204,"y":2,"w":200,"h":450},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":450},
+	"sourceSize": {"w":200,"h":450}
+},
+"bearBelly3.png":
+{
+	"frame": {"x":2,"y":2,"w":200,"h":450},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":450},
+	"sourceSize": {"w":200,"h":450}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "bearBelly.png",
+	"format": "RGBA8888",
+	"size": {"w":406,"h":454},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f673cb7c63f3be1ec8d4f37b5253a9e4:827219248f1867cca19a42f4f3c96d03:b0ccf0467fb716ac00b0de884fa2e71e$"
+}
+}

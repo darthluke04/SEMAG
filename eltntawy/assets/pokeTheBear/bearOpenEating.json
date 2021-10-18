@@ -1,0 +1,44 @@
+{"frames": {
+
+"bearEating1.png":
+{
+	"frame": {"x":2,"y":2,"w":231,"h":300},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":231,"h":300},
+	"sourceSize": {"w":231,"h":300}
+},
+"bearEating2.png":
+{
+	"frame": {"x":2,"y":304,"w":231,"h":300},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":231,"h":300},
+	"sourceSize": {"w":231,"h":300}
+},
+"bearEating3.png":
+{
+	"frame": {"x":2,"y":304,"w":231,"h":300},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":231,"h":300},
+	"sourceSize": {"w":231,"h":300}
+},
+"bearEating4.png":
+{
+	"frame": {"x":2,"y":2,"w":231,"h":300},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":231,"h":300},
+	"sourceSize": {"w":231,"h":300}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "bearOpenEating.png",
+	"format": "RGBA8888",
+	"size": {"w":235,"h":606},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b8836f03a2397b65eaaeef62b5ba99de:f872c7a0d9390c19bb06f5c37942c960:63a97025325068795b60df52f9bb037a$"
+}
+}

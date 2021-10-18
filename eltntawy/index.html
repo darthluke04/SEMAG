@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dumb Ways To Die</title>
+    <script type="text/javascript" src="js/phaser.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width">
+
+    <style> body {
+        margin: 0;
+        background: #B4D9E7;
+    } </style>
+
+    <!-- stages -->
+    <script type="application/javascript" src="stages/boot.js"></script>
+    <script type="application/javascript" src="stages/preload.js"></script>
+    <script type="application/javascript" src="stages/score.js"></script>
+    <script type="application/javascript" src="stages/game.js"></script>
+    <script type="application/javascript" src="stages/fork.js"></script>
+    <script type="application/javascript" src="stages/running.js"></script>
+    <script type="application/javascript" src="stages/poke.js"></script>
+    <script type="application/javascript" src="stages/wasps.js"></script>
+    <script type="application/javascript" src="stages/space.js"></script>
+    <script type="application/javascript" src="stages/train.js"></script>
+    <script type="application/javascript" src="stages/electricity/electricityStage.js"></script>
+    <script type="application/javascript" src="stages/electricity/electricity_success.js"></script>
+    <script type="application/javascript" src="stages/electricity/electricity_fail.js"></script>
+    <script type="application/javascript" src="stages/gameoverStage.js"></script>
+    <script type="application/javascript" src="stages/electricity/electricityTest.js"></script>
+    <script type="application/javascript" src="stages/dontPressTheButton.js"></script>
+    <script type="application/javascript" src="stages/killThatDear.js"></script>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.scrolly.min.js"></script>
+    <script src="js/jquery.dropotron.min.js"></script>
+    <script src="js/jquery.scrollex.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="css/skel.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-xlarge.css" />
+    </noscript>
+
+    <!-- all game state must be before this scripts loading -->
+    <script type="application/javascript" src="stages/menu.js"></script>
+    <script type="application/javascript" src="stages/main.js"></script>
+
+</head>
+<body>
+
+
+<!-- Header -->
+<header id="header" class="skel-layers-fixed">
+    <h1 id="logo"><a href="index.html">Dumb Ways To Die</a></h1>
+</header>
+
+<!-- Main -->
+<div id="main" class="wrapper style1">
+    <div class="container" style="height: 525px ;width: 750px;">
+        <header class="major">
+            <h2>Dumb Ways To Die</h2>
+            <p>JavaScript Project powered by phaser game engine </p>
+            <div id="gameDiv" align="center" ></div>
+        </header>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+        <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+        <li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    </ul>
+</footer>
+
+</body>
+</html>
