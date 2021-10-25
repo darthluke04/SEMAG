@@ -93,7 +93,8 @@ function voteBtn(question) {
 	document.getElementById(selectId).addEventListener("change", function() {
    
 	 //Retrieve data from text field
-		document.getElementById(selectId).value  = game11;
+		document.getElementById(selectId).value  = defaultVal;
+		closePopup();
   	// closePopup();
    
 	});
