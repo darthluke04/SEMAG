@@ -39,7 +39,7 @@ html {
 	z-index: 1000;
 	position: absolute;
 	transition: 0.5s;
-	transform: translate(0px, -380px); 
+	transform: translate(0px, -290%); 
 }
 
 .popupContent input {
