@@ -7,13 +7,51 @@ html {
 }
 
 
+
+/* GALLERY */
 .popular {
 	border: transparent;
 }
 
 
 
+/* POPUP */
+.popup {
+	text-align: center;
+	width: 97%;
+	height: 120px;
+	border: 1px solid #353535;
+	border-radius: 0px;
+	background-color: #ffffff;
+	z-index: 1000;
+	position: absolute;
+	transition: 0.5s;
+	transform: translate(0px, -500px); 
+}
 
+.popupOpen {
+	text-align: center;
+	width: 97%;
+	height: 120px;
+	border: 1px solid #353535;
+	border-radius: 10px;
+	background-color: #ffffff;
+	z-index: 1000;
+	position: absolute;
+	transition: 0.5s;
+	transform: translate(0px, -380px); 
+}
+
+.popupContent input {
+	width: 45%;
+}
+
+.popupContent select {
+	width: 75%;
+}
+
+
+/* NUMBER OF GAMES */
 #numberOfGames{
 	transition: all 1s;
 	text-shadow: #8a8a8a 0px 0px 10px,   #8a8a8a 0px 0px 10px,   #8a8a8a 0px 0px 5px,#8a8a8a 0px 0px 10px,   #8a8a8a 0px 0px 16px,   #8a8a8a 0px 0px 32px;
@@ -22,7 +60,7 @@ html {
 
 
 
-
+/* SIDE NAV BAR */
 #sideNavHr {
 	border-color: rgba(255, 255, 255, 0.25);
 }
@@ -34,7 +72,7 @@ html {
 
 
 
-
+/* GALLERY */
 #galleryDiv {
 	width: 30%;
 	height: 0%;
