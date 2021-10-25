@@ -16,7 +16,150 @@ function highlight() {
 
 
 
+/* POPUP */
+function openPopup(){
+	document.getElementById("popup").className = "popupOpen";
+	console.log("opened popup");
+}
 
+function closePopup(){
+	document.getElementById("popup").className = "popup";
+	console.log("closed popup");
+}
+
+function alert(title, desc) {
+  document.getElementById("title").innerHTML = title;
+	document.getElementById("desc").innerHTML = desc;
+}
+
+function voteBtn(question) {
+	selectId = "gameVote";
+	defaultVal = "Please vote on a game";
+	game1 = "Hextris v1";
+	game2 = "Hextris v2";
+	game3 = "Stack";
+	game4 = "Chrome Dino Runner";
+	game5 = "Colorsplosion";
+	game6 = "Guess That Number";
+	game7 = "2048 v1";
+	game8 = "2048 v2";
+	game9 = "Tic Tac Toe v1";
+	game10 = "Tic Tac Toe v2";
+	game11 = "Peace";
+	game12 = "Color Swirl v1";
+	game13 = "Tetris v1";
+	game14 = "Tetris v2";
+	game15 = "Defender";
+	game16 = "Pacman v1";
+	game17 = "Pacman v2";
+	game18 = "Snake";
+	game19 = "Space Invaders v1";
+	game20 = "Space Invaders v2";
+	game21 = "Tetris v3";
+	game22 = "Multiplayer Snake v1";
+	game23 = "XSSnake Online Multiplayer";
+	game24 = "Tron";
+	game25 = "Multiplayer Car Game v1";
+	game26 = "Color Land 4";
+	game27 = "Tank Game Online Multiplayer";
+	game28 = "Quadplay v1";
+	game29 = "Time Sphere";
+	game30 = "Emulatrix";
+	game31 = "Minecraft v1";
+	game32 = "Bouncy Bacon";
+	game33 = "Flappy Bird";
+	game34 = "Boomshire";
+	game35 = "Super Mario Brothers";
+	game36 = "Plants Vs Zombies";
+	game37 = "Classic Pool";
+	game38 = "Filler";
+	game39 = "The Oregon Trail";
+	game40 = "Connect 4";
+	game41 = "Dubm Ways To Die";
+	game42 = "Color Swirl v2";
+	game43 = "2048 v3";
+	game44 = "Multiplayer Car Game v2";
+	game45 = "Multiplayer Chess";
+	game46 = "Car Drifting Simulator";
+	game47 = "Quadplay v2";
+  document.getElementById("title").innerHTML = question;
+
+	// document.getElementById(selectId).value;
+
+	document.getElementById("desc").innerHTML = "<select id=" + selectId + " value=" + defaultVal + "><option disabled value=" + defaultVal + ">" + defaultVal + "</option><option value=" + game1 + ">" + game1 + "</option><option value=" + game2 + ">" + game2 + "</option><option value=" + game3 + ">" + game3 + "</option><option value=" + game4 + ">" + game4 + "</option><option value=" + game5 + ">" + game5 + "</option><option value=" + game6 + ">" + game6 + "</option><option value=" + game7 + ">" + game7 + "</option><option value=" + game8 + ">" + game8 + "</option><option value=" + game9 + ">" + game9 + "</option><option value=" + game10 + ">" + game10 + "</option><option value=" + game11 + ">" + game11 + "</option><option value=" + game12 + ">" + game12 + "</option><option value=" + game13 + ">" + game13 + "</option><option value=" + game14 + ">" + game14 + "</option><option value=" + game15 + ">" + game15 + "</option><option value=" + game16 + ">" + game16 + "</option><option value=" + game17 + ">" + game17 + "</option><option value=" + game18 + ">" + game18 + "</option><option value=" + game19 + ">" + game19 + "</option><option value=" + game20 + ">" + game20 + "</option><option value=" + game21 + ">" + game21 + "</option><option value=" + game22 + ">" + game22 + "</option><option value=" + game23 + ">" + game23 + "</option><option value=" + game24 + ">" + game24 + "</option><option value=" + game25 + ">" + game25 + "</option><option value=" + game26 + ">" + game26 + "</option><option value=" + game27 + ">" + game27 + "</option><option value=" + game28 + ">" + game28 + "</option><option value=" + game29 + ">" + game29 + "</option><option value=" + game30 + ">" + game30 + "</option><option value=" + game31 + ">" + game31 + "</option><option value=" + game32 + ">" + game32 + "</option><option value=" + game33 + ">" + game33 + "</option><option value=" + game34 + ">" + game34 + "</option><option value=" + game35 + ">" + game35 + "</option><option value=" + game36 + ">" + game36 + "</option><option value=" + game37 + ">" + game37 + "</option><option value=" + game38 + ">" + game38 + "</option><option value=" + game39 + ">" + game39 + "</option><option value=" + game40 + ">" + game40 + "</option><option value=" + game41 + ">" + game41 + "</option><option value=" + game42 + ">" + game42 + "</option><option value=" + game43 + ">" + game43 + "</option><option value=" + game44 + ">" + game44 + "</option><option value=" + game45 + ">" + game45 + "</option><option value=" + game46 + ">" + game46 + "</option><option value=" + game47 + ">" + game47 + "</option></select>";
+	openPopup();
+
+
+	document.getElementById(selectId).addEventListener("change", function() {
+   
+	 //Retrieve data from text field
+		document.getElementById(selectId).value  = game11;
+  	// closePopup();
+   
+	});
+
+	// if(document.getElementById("gameVote").value != defaultVal) {
+	// 	closePopup();
+	// }
+	// document.getElementById("desc").onmouseenter = closePopup();
+}
+
+function questionBtn(question, ansA, ansB) {
+	game1 = "Hextris v1";
+	game2 = "Hextris v2";
+	game3 = "Stack";
+	game4 = "Chrome Dino Runner";
+	game5 = "Colorsplosion";
+	game6 = "Guess That Number";
+	game7 = "2048 v1";
+	game8 = "2048 v2";
+	game9 = "Tic Tac Toe v1";
+	game10 = "Tic Tac Toe v2";
+	game11 = "Peace";
+	game12 = "Color Swirl v1";
+	game13 = "Tetris v1";
+	game14 = "Tetris v2";
+	game15 = "Defender";
+	game16 = "Pacman v1";
+	game17 = "Pacman v2";
+	game18 = "Snake";
+	game19 = "Space Invaders v1";
+	game20 = "Space Invaders v2";
+	game21 = "Tetris v3";
+	game22 = "Multiplayer Snake v1";
+	game23 = "XSSnake Online Multiplayer";
+	game24 = "Tron";
+	game25 = "Multiplayer Car Game v1";
+	game26 = "Color Land 4";
+	game27 = "Tank Game Online Multiplayer";
+	game28 = "Quadplay v1";
+	game29 = "Time Sphere";
+	game30 = "Emulatrix";
+	game31 = "Minecraft v1";
+	game32 = "Bouncy Bacon";
+	game33 = "Flappy Bird";
+	game34 = "Boomshire";
+	game35 = "Super Mario Brothers";
+	game36 = "Plants Vs Zombies";
+	game37 = "Classic Pool";
+	game38 = "Filler";
+	game39 = "The Oregon Trail";
+	game40 = "Connect 4";
+	game41 = "Dubm Ways To Die";
+	game42 = "Color Swirl v2";
+	game43 = "2048 v3";
+	game44 = "Multiplayer Car Game v2";
+	game45 = "Multiplayer Chess";
+	game46 = "Car Drifting Simulator";
+	game47 = "Quadplay v2";
+  document.getElementById("title").innerHTML = question;
+	document.getElementById("desc").innerHTML = "<input type='button' id='questionButton1' name= class='questionButton1' value=" + ansA + "><input type='button' id='questionButton2' class='questionButton2' value=" + ansB + ">";
+}
+
+
+
+
+/* GALLERY */
 function galleryShow(linkID, imgSrc){
 	mouseX = event.clientX;
 	mouseY = event.clientY;
