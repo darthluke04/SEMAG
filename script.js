@@ -17,7 +17,7 @@ function highlight() {
 
 
 /* POPUP */
-function openPopup(){
+function openPopup(){ 
 	document.getElementById("popup").className = "popupOpen";
 	console.log("opened popup");
 }
@@ -95,7 +95,8 @@ function voteBtn(question) {
 	 //Retrieve data from text field
 		document.getElementById(selectId).value  = defaultVal;
 		closePopup();
-  	// closePopup();
+                questionBtn("");
+                openPopup();
    
 	});
 
@@ -154,7 +155,8 @@ function questionBtn(question, ansA, ansB) {
 	game46 = "Car Drifting Simulator";
 	game47 = "Quadplay v2";
   document.getElementById("title").innerHTML = question;
-	document.getElementById("desc").innerHTML = "<input type='button' id='questionButton1' name= class='questionButton1' value=" + ansA + "><input type='button' id='questionButton2' class='questionButton2' value=" + ansB + ">";
+	document.getElementById("desc").innerHTML = ansA + ansB;
+//	document.getElementById("desc").innerHTML = "<input type='button' id='questionButton1' name= class='questionButton1' value=" + ansA + "><input type='button' id='questionButton2' class='questionButton2' value=" + ansB + ">";
 }
 
 
