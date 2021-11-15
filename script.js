@@ -95,8 +95,8 @@ function voteBtn(question) {
 	 //Retrieve data from text field
 		document.getElementById(selectId).value  = defaultVal;
 		closePopup();
-                questionBtn("");
-                openPopup();
+//                 questionBtn("");
+//                 openPopup();
    
 	});
 
