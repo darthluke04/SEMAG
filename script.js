@@ -155,9 +155,14 @@ function questionBtn(question, ansA, ansB) {
 	game45 = "Multiplayer Chess";
 	game46 = "Car Drifting Simulator";
 	game47 = "Quadplay v2";
-  document.getElementById("title").innerHTML = question;
-	document.getElementById("desc").innerHTML = ansA + ansB;
-//	document.getElementById("desc").innerHTML = "<input type='button' id='questionButton1' name= class='questionButton1' value=" + ansA + "><input type='button' id='questionButton2' class='questionButton2' value=" + ansB + ">";
+	onclick = "onclick='location.href='";
+	link = "https://semag-website.nielsen101004.repl.co/signin.html'";
+  	document.getElementById("title").innerHTML = question;
+	document.getElementById("desc").innerHTML = "<input" + onclick + link + "type='button' id='questionButton1' name= class='questionButton1' value=" + ansA + "><input type='button' id='questionButton2' class='questionButton2' value=" + ansB + ">";
+	if(document.getElementById(questionButton1).value == "YES"){
+		
+	}
+// 	document.getElementById("desc").innerHTML = ansA + ansB;
 }
 
 
