@@ -94,7 +94,7 @@ function voteBtn(question) {
 	document.getElementById(submitId).addEventListener("change", function() {
    
 	 //Retrieve data from text field
-		document.getElementById(selectId).value  = defaultVal;
+		document.getElementById(submitId).value  = defaultVal;
 		closePopup();
 //                 questionBtn("");
 //                 openPopup();
