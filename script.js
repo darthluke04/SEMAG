@@ -160,6 +160,16 @@ function questionBtn(question, ansA, ansB) {
 }
 
 
+/* Submit votes google sheets */ 
+const scriptURL = 'https://script.google.com/macros/s/AKfycby096L_SXnOOuwQxd1NbB-gA0D1hXzjG3Xe_EjMwOH-zJoo3WY/exec'
+const form = document.forms['submit-to-google-sheet']
+
+form.addEventListener('submit', e => {
+	e.preventDefault()
+	fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+	.then(response => console.log('Success!', response))
+	.catch(error => console.error('Error!', error.message))
+  })
 
 
 /* GALLERY */
