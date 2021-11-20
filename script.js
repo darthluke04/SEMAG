@@ -8,6 +8,11 @@ var aId = 'new';
 var elm = document.getElementById(aId);
 var elmStyle = document.getElementById('new').style;
 
+funcition jsMain(){
+	getNumGames();
+// 	questionBtn('Would you like to vote on a game?', 'YES', 'NO'); openPopup();
+}
+
 
 function highlight() {
 	elmStyle = 'background-color: rgba(127.5, 127.5, 127.5, 0.5);'
