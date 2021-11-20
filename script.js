@@ -112,7 +112,7 @@ function voteBtn(question) {
 	// document.getElementById("desc").onmouseenter = closePopup();
 }
 
-function questionBtn(question, ansA, ansB) {
+/*function questionBtn(question, ansA, ansB) {
 	game1 = "Hextris v1";
 	game2 = "Hextris v2";
 	game3 = "Stack";
@@ -168,7 +168,7 @@ function questionBtn(question, ansA, ansB) {
 		
 	}
 // 	document.getElementById("desc").innerHTML = ansA + ansB;
-}
+}*/
 
 
 /* Submit votes google sheets */ 
