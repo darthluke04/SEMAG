@@ -1,0 +1,153 @@
+.tile.tile-2 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-2 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+    }
+}
+
+.tile.tile-4 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: -107px 0px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-4 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: -58px 0px;
+    }
+}
+
+.tile.tile-8 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: -214px 0px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-8 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: -106px 0px;
+    }
+}
+
+.tile.tile-16 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: -321px 0px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-16 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: -164px 0px;
+    }
+}
+
+.tile.tile-32 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: 0px -107px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-32 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: 0px -58px;
+    }
+}
+
+.tile.tile-64 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: -107px -107px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-64 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: -58px -58px;
+    }
+}
+
+.tile.tile-128 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: -214px -107px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-128 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: -106px -58px;
+    }
+}
+
+.tile.tile-256 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: -321px -107px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-256 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: -164px -58px;
+    }
+}
+
+.tile.tile-512 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: 0px -214px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-512 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: 0px -106px;
+    }
+}
+
+.tile.tile-1024 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: -107px -214px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-1024 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: -58px -106px;
+    }
+}
+
+.tile.tile-2048 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: -214px -214px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-2048 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: -106px -106px;
+    }
+}
+
+.tile.tile-4096 .tile-inner {
+  background-image: url(../image/bkb.jpg);
+  background-size: 428px 428px;
+  background-position: -321px -214px;
+}
+@media screen and (max-width: 480px) {
+  .tile.tile-4096 .tile-inner {
+      background-image: url(../image/bkb.jpg);
+      background-size: 224px 224px;
+      background-position: -164px -106px;
+    }
+}
