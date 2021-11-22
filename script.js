@@ -8,7 +8,7 @@ var aId = 'new';
 var elm = document.getElementById(aId);
 var elmStyle = document.getElementById('new').style;
 
-funcition jsMain(){
+function jsMain(){
 	getNumGames();
 // 	questionBtn('Would you like to vote on a game?', 'YES', 'NO'); openPopup();
 }
