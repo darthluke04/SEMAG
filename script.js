@@ -1,4 +1,6 @@
+//Console.re
 
+console.re.log('remote log test');
 
 // setCookie()
 // checkCookie();
