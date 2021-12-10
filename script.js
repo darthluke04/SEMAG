@@ -42,7 +42,7 @@ function alert(title, desc) {
 
 function popupLink(title, desc, url) {
 	document.getElementById("title").innerHTML = title;
-//	document.getElementById("desc").innerHTML = "<a href=" + url + "target='_blank'>" + desc + "</a>";
+	document.getElementById("desc").innerHTML = "<a href=" + url + " target='_blank'>" + desc + "</a>";
 	openPopup();
 }
 
