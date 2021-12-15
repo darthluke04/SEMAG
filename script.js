@@ -44,6 +44,7 @@ function popupLink(title, desc, url) {
 	document.getElementById("title").innerHTML = title;
 	document.getElementById("desc").innerHTML = "<a href=" + url + " target='_blank'>" + desc + "</a>";
 	openPopup();
+	setTimeout(() => { closePopup(); }, 5000);
 }
 
 function voteBtn(question) {
