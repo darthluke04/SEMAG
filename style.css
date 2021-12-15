@@ -1,11 +1,14 @@
 @font-face { font-family: Oswald; src: url('ExtraFonts/Oswald-VariableFont_wght.ttf'); } 
 
-
 html {
   --degs: 180deg;
 	--Width: 100vw;
 }
 
+/* disabled links */
+a.disabled {
+	pointer-events: none;
+}
 
 
 /* GALLERY */
