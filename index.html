@@ -73,15 +73,16 @@
 	<button onclick="location.href='https://semag-website.nielsen101004.repl.co/signin.html'" id="SignBtn" class="SignBtn Btn">Sign In</button>
 </div>
 
- 
- <?php
-$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-$txt = "John Doe\n";
-fwrite($myfile, $txt);
-$txt = "Jane Doe\n";
-fwrite($myfile, $txt);
-fclose($myfile);
-?>
+ <script>
+	<?php
+		$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+		$txt = "John Doe\n";
+		fwrite($myfile, $txt);
+		$txt = "Jane Doe\n";
+		fwrite($myfile, $txt);
+		fclose($myfile);
+	?>
+</script>
 
 <div id="navBar" class="navBar">
 	
