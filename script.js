@@ -240,12 +240,19 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-  var darkModeValue=getCookie("DarkMode");
-  if (darkModeValue == "on") {
-    localStorage.setItem("dark-mode", "on");
-	}
-  if(darkModeValue == "off") {
-		localStorage.setItem("dark-mode", "off");
+  darkModeValue = getCookie("DarkMode");
+  if (darkModeValue != "") {
+    alert("" + darkModeValue);
+  } else if(darkModeValue == "on"){
+     if (darkModeValue != "" && darkModeValue != null) {
+	     
+	     setCookie("DarkMode", "on", 30);
+   	}
+  } else if(darkModeValue == "off") {
+  	if (darkModeValue != "" && darkModeValue != null) {
+		
+		setCookie("DarkMode", "off", 30);
+   	}
   }
 }
 
