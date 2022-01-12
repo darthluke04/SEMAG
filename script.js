@@ -12,7 +12,7 @@ var elmStyle = document.getElementById('new').style;
 
 function jsMain(){
 	getNumGames();
-	popupLink('SUBSCRIBE To Karter Bishop!', 'Karters Channel [^]', 'https://www.youtube.com/channel/UCFwKUpbU80mpVvWUI218JRQ');
+	popupLink('SUBSCRIBE To Karter Bishop!', 'Karters Channel', 'https://www.youtube.com/channel/UCFwKUpbU80mpVvWUI218JRQ');
 // 	questionBtn('Would you like to vote on a game?', 'YES', 'NO'); openPopup();
 }
 
