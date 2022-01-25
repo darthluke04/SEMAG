@@ -22,6 +22,29 @@ function highlight() {
 	document.getElementById(aId).style = elmStyle;
 }
 
+/* SIDE BAR SCRIPT.JS */
+
+/*250px and add a black background color to body */
+document.getElementById("mySidenavbtn").style.position = "fixed";
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "300px";
+  document.getElementById("main").style.marginLeft = "100px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.1)";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+  document.body.style.backgroundColor = "white";
+}
+
+
+/* Alerts? */
+function alerts() {
+	alert("Do you want to recieve notifications Via Email?")
+}
 
 
 /* POPUP */
