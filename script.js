@@ -226,11 +226,26 @@ function galleryShow(linkID, imgSrc){
 	document.getElementById("galleryDiv").style.left = xPos + "px";
 	document.getElementById("galleryDiv").style.top = yPos + "px";
 	document.getElementById("galleryDiv").style.display = "block";
+	document.getElementById("galleryDiv").innerHTML = '<img id="galleryImg" src="img/HextrisSc.png" style="width:100%"></img>'
 	document.getElementById("galleryImg").src = "img/" + imgSrc;
 	console.log("img/" + imgSrc);
 }
+function videoShow(linkID, imgSrc){
+	mouseX = event.clientX;
+	mouseY = event.clientY;
+	console.log("Gallery is shown");
+	xPos = mouseX + 100;
+	yPos = mouseY + 10;
+	document.getElementById("galleryDiv").style.left = xPos + "px";
+	document.getElementById("galleryDiv").style.top = yPos + "px";
+	document.getElementById("galleryDiv").style.display = "block";
+	document.getElementById("galleryDiv").innerHTML = '<video id="galleryVid" src=""style="width:100%" controls autoplay muted></video>'
+	document.getElementById("galleryVid").src = "vid/" + imgSrc;
+	console.log("vid/" + imgSrc);
+}
 function galleryHide(linkID){
 	document.getElementById("galleryDiv").style.display = "none";
+	document.getElementById("galleryDiv").innerHTML = "";
 	console.log("Gallery is hidden");
 }
 
