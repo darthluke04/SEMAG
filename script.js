@@ -596,3 +596,11 @@ function getNumGames() {
 	document.getElementById('numberOfGames').innerHTML = gameNum + " Games!";
 	
 }
+
+/* Drop down scores */
+var hid = true;
+
+function toggleScores() {
+	hid != hid;
+	document.getElementById("scoreboardTable").hidden = hid;
+}

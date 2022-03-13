@@ -13,7 +13,7 @@
 	<link rel="icon" type="image/png" href="img/SEMAG.png">
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://what-is-programming.nielsen101004.repl.co/index.html"></script>
+	<!-- <script src="https://what-is-programming.nielsen101004.repl.co/index.html"></script> -->
 	<!-- <script src="https://what-is-programming.nielsen101004.repl.co/script.js"></script>   BROKEN -->
 	<!-- <script src="https://what-is-programming.nielsen101004.repl.co/style.css"></script>   BROKEN -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -74,7 +74,65 @@
 	<button onclick="location.href='https://semag-website.nielsen101004.repl.co/signin.html'" id="SignBtn" class="SignBtn Btn">Sign In</button>
 </div>
 
- <script>
+<div id="scoreboard" class="scoreboard">
+	<div onclick="dropScore();" id="dropScores" class="dropScores">dropdown</div>
+	<table id="scoreboardTable" class="scoreboardTable">
+		<thead>
+			<tr>
+				<th class="Game">Game</th>
+				<th class="Name">Name</th>
+				<th class="Score">Score</th>
+			</tr>
+			<tr>
+				<td>Hextris</td>
+				<td>nielsen101004</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Stack</td>
+				<td>nielsen101004</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Chrome Dino</td>
+				<td>nielsen101004</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>GTN</td>
+				<td>nielsen101004</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>2048</td>
+				<td>nielsen101004</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Tetris</td>
+				<td>nielsen101004</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Pacman</td>
+				<td>nielsen101004</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Snake</td>
+				<td>nielsen101004</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Space Invaders</td>
+				<td>nielsen101004</td>
+				<td>0</td>
+			</tr>
+		<thead>
+	</table>
+</div>
+
+ <!-- <script>
 	<?php
 		$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
 		$txt = "John Doe\n";
@@ -83,7 +141,7 @@
 		fwrite($myfile, $txt);
 		fclose($myfile);
 	?>
-</script>
+</script> -->
 
 <div id="navBar" class="navBar">
 	
@@ -1341,7 +1399,7 @@
 			<td class="G">
 				<div class="NewDiv">
 					<img class="NewImg" src="img/Fixed!.png" width="60px">
-				</div><a onmouseout="galleryHide('c30')" onmouseover="galleryShow('c30','EmulatrixSc.png')" href="Lrusso/index.html" style="disabled" disabled target="_blank">Emulatrix</a></td>
+				</div><a onmouseout="galleryHide('c30')" onmouseover="galleryShow('c30','EmulatrixSc.png')" href="Lrusso/index.html" disabled target="_blank">Emulatrix</a></td>
 			<td class="R">
 				<ul>
 					<li>Emulator</li>
