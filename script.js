@@ -239,7 +239,7 @@ function videoShow(linkID, imgSrc){
 	document.getElementById("galleryDiv").style.left = xPos + "px";
 	document.getElementById("galleryDiv").style.top = yPos + "px";
 	document.getElementById("galleryDiv").style.display = "block";
-	document.getElementById("galleryDiv").innerHTML = '<video id="galleryVid" src=""style="width:100%" controls autoplay muted></video>'
+	document.getElementById("galleryDiv").innerHTML = '<video id="galleryVid" src=""style="width:100%" controls autoplay></video>'
 	document.getElementById("galleryVid").src = "vid/" + imgSrc;
 	console.log("vid/" + imgSrc);
 }
