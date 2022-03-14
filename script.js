@@ -616,3 +616,4 @@ function toggleScores() {
 		scoresBtn.innerHTML = "&#9660; Open Scores";
 	}
 }
+/*  */
