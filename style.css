@@ -924,16 +924,24 @@ a {
 	width: var(--scoreboardWidth);
 	height: var(--scoreboardHeight);
 	border: solid;
-	background-color:rgba(0, 0, 0, 0.25);
+	background-color:rgba(0, 0, 0, 0.75);
 	color: white;
 	resize: vertical;
 	overflow: auto;
 	border-radius: 5px;
 }
 
-.scoreboardTable {
+.dropScoresBtn {
+	border: none;
+	background-color:rgba(0, 0, 0);
+	color: white;
+	width: 100%;
+	font-size: large
 }
 
-
+.scoreboardTable {
+	width: 100%;
+	display: none;
+}
 
 

@@ -599,8 +599,20 @@ function getNumGames() {
 
 /* Drop down scores */
 var hid = true;
+document.getElementById("scoreboardTable").display = none;
 
 function toggleScores() {
-	hid != hid;
-	document.getElementById("scoreboardTable").hidden = hid;
+	console.log("scores pressed: was: " + document.getElementById("scoreboardTable").display);
+	var scores = document.getElementById("scoreboardTable");
+	var scoresDiv = document.getElementById("scoreboard");
+	var scoresBtn = document.getElementById("dropScoresBtn");
+	if (scores.style.display === "none") {
+		scores.style.display = "block";
+		scores.style.width = "100%";
+		scoresBtn.innerHTML = "&#9650; Open Scores";
+	} else {
+		scores.style.display = "none";
+		scores.style.width = "100%";
+		scoresBtn.innerHTML = "&#9660; Open Scores";
+	}
 }
