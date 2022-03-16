@@ -383,7 +383,8 @@ var darkModeManager = (function (mode) {
 
 	document.body.appendChild(darkModeToggle);
 
-	darkModeToggle.querySelector('svg').style = 'width: 100%; height: 100%; position: fixed; left: 50%; transform: translate(-50%, -50%);';
+												//'width: 100%; height: 100%; position: fixed; left: 50%; transform: translate(-50%, -50%);'
+	darkModeToggle.querySelector('svg').style = 'width: 100%; height: 100%; position: fixed; left: 50%; margin-top: -100px; transform: translate(-50%, -50%);';
 
 		switch(mode) {
 			case 'match':
