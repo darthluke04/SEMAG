@@ -947,3 +947,19 @@ a {
 /*  */
 
 
+
+
+
+
+
+
+
+/* Help Main */
+
+.Question {
+	background-color: rgba(0,0,0,0.125); border-radius: 10px;
+}
+
+.Question-inner {
+	margin-left: 10px;
+}
