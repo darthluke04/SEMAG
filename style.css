@@ -957,9 +957,16 @@ a {
 /* Help Main */
 
 .Question {
-	background-color: rgba(0,0,0,0.125); border-radius: 10px;
+	background-color: rgba(0,0,0,0.125);
+	border-radius: 10px;
 }
 
 .Question-inner {
 	margin-left: 10px;
+}
+
+.FAQ-Important {
+	background-color: rgba(0,0,0,0.025);
+	border-radius: 2px;
+	border: rgba(0,0,0,0.25) solid 0.1px;
 }
